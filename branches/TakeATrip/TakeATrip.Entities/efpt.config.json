@@ -1,0 +1,1 @@
+﻿{"ContextClassName":"TakeatripContext","DefaultDacpacSchema":null,"IdReplace":false,"IncludeConnectionString":false,"OutputPath":"Core","ProjectRootNamespace":"TakeATrip.Entities","SelectedToBeGenerated":0,"Tables":["dbo.Images","dbo.Reviews","dbo.Tours","dbo.TourTypes"],"UseDatabaseNames":false,"UseFluentApiOnly":true,"UseHandleBars":false,"UseInflector":false}
