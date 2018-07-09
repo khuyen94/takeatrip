@@ -1,0 +1,56 @@
+﻿@model RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div id="register_bg">
+
+    <nav id="menu" class="fake_menu"></nav>
+
+    <div id="preloader">
+        <div data-loader="circle-side"></div>
+    </div>
+    <!-- End Preload -->
+
+    <div id="login">
+        <aside>
+            <figure>
+                <a asp-controller="Home" asp-action="Index"><img src="~/img/logo_sticky.png" width="155" height="36" data-retina="true" alt="" class="logo_sticky"></a>
+            </figure>
+            <form asp-controller="Account" asp-action="Register"
+                  asp-route-returnurl="@ViewData["ReturnUrl"]" role="form"
+                  method="post" autocomplete="off">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email">Your Email</label>
+                    <input asp-for="Email" class="form-control" type="email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <i class="icon_mail_alt"></i>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Your Password</label>
+                    <input asp-for="Password" class="form-control" type="password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <i class="icon_lock_alt"></i>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" class="form-control" type="password">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    <i class="icon_lock_alt"></i>
+                </div>
+                <div id="pass-info" class="clearfix"></div>
+                @*<a href="#0" class="btn_1 rounded full-width add_top_30">Register Now!</a>*@
+                <button type="submit" class="btn_1 rounded full-width add_top_30">Register Now!</button>
+                <div class="text-center add_top_10">Already have an acccount? <strong><a asp-controller="Account" asp-action="Login">Sign In</a></strong></div>
+            </form>
+            <div class="copy">© 2018 TakeATrip</div>
+        </aside>
+    </div>
+</div>
+<!-- /login -->
+
+@section Scripts {
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="~/js/pw_strenght.js"></script>
+}
