@@ -22,3 +22,15 @@ D:\OneDrive - CONASI JSC\Projects\GitHub\takeatrip\branches\TakeATrip\Repository
 D:\OneDrive - CONASI JSC\Projects\GitHub\takeatrip\branches\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.csproj.CopyComplete
 D:\OneDrive - CONASI JSC\Projects\GitHub\takeatrip\branches\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.dll
 D:\OneDrive - CONASI JSC\Projects\GitHub\takeatrip\branches\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.pdb
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\bin\Debug\netcoreapp2.1\Repository.Pattern.EfCore.deps.json
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\bin\Debug\netcoreapp2.1\Repository.Pattern.EfCore.dll
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\bin\Debug\netcoreapp2.1\Repository.Pattern.EfCore.pdb
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\bin\Debug\netcoreapp2.1\Repositoy.Pattern.dll
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\bin\Debug\netcoreapp2.1\Repositoy.Pattern.pdb
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.csprojAssemblyReference.cache
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.csproj.CoreCompileInputs.cache
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.AssemblyInfoInputs.cache
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.AssemblyInfo.cs
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.csproj.CopyComplete
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.dll
+E:\takeatrip\TakeATrip\Repository.Pattern.EfCore\obj\Debug\netcoreapp2.1\Repository.Pattern.EfCore.pdb

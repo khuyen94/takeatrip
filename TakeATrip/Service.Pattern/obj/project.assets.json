@@ -697,23 +697,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KhuyenTD\\.nuget\\packages\\": {},
+    "C:\\Users\\tranv\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive - CONASI JSC\\Projects\\GitHub\\takeatrip\\branches\\TakeATrip\\Service.Pattern\\Service.Pattern.csproj",
+      "projectUniqueName": "E:\\takeatrip\\TakeATrip\\Service.Pattern\\Service.Pattern.csproj",
       "projectName": "Service.Pattern",
-      "projectPath": "D:\\OneDrive - CONASI JSC\\Projects\\GitHub\\takeatrip\\branches\\TakeATrip\\Service.Pattern\\Service.Pattern.csproj",
-      "packagesPath": "C:\\Users\\KhuyenTD\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive - CONASI JSC\\Projects\\GitHub\\takeatrip\\branches\\TakeATrip\\Service.Pattern\\obj\\",
+      "projectPath": "E:\\takeatrip\\TakeATrip\\Service.Pattern\\Service.Pattern.csproj",
+      "packagesPath": "C:\\Users\\tranv\\.nuget\\packages\\",
+      "outputPath": "E:\\takeatrip\\TakeATrip\\Service.Pattern\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\KhuyenTD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tranv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -726,8 +726,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\OneDrive - CONASI JSC\\Projects\\GitHub\\takeatrip\\branches\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj": {
-              "projectPath": "D:\\OneDrive - CONASI JSC\\Projects\\GitHub\\takeatrip\\branches\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj"
+            "E:\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj": {
+              "projectPath": "E:\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj"
             }
           }
         }

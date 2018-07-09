@@ -17,6 +17,12 @@ using TakeATrip.Entities.IdentityDB;
 using TakeATrip.Services.Common;
 using TakeATrip.Services.Models;
 using Microsoft.AspNetCore.Http;
+using TakeATrip.Services.Core;
+using AutoMapper;
+using Autofac;
+using Service.Pattern;
+using Repositoy.Pattern.Repositories;
+using Autofac.Extensions.DependencyInjection;
 
 namespace TakeATrip.Web
 {
@@ -30,7 +36,7 @@ namespace TakeATrip.Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //Add db context
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -63,7 +69,20 @@ namespace TakeATrip.Web
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
 
+            services.AddSingleton<ITourService, TourService>();
+            services.AddSingleton<IReviewService, ReviewService>();
+
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddAutoMapper();
+
             services.AddMvc();
+
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepositoryAsync<>));
+            containerBuilder.RegisterGeneric(typeof(Service<>));
+            containerBuilder.Populate(services);
+            var container = containerBuilder.Build();
+            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

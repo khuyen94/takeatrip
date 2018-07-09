@@ -15,3 +15,11 @@ D:\OneDrive - CONASI JSC\Projects\GitHub\takeatrip\branches\TakeATrip\Repositoy.
 D:\OneDrive - CONASI JSC\Projects\GitHub\takeatrip\branches\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.AssemblyInfo.cs
 D:\OneDrive - CONASI JSC\Projects\GitHub\takeatrip\branches\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.dll
 D:\OneDrive - CONASI JSC\Projects\GitHub\takeatrip\branches\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.pdb
+E:\takeatrip\TakeATrip\Repositoy.Pattern\bin\Debug\netcoreapp2.1\Repositoy.Pattern.deps.json
+E:\takeatrip\TakeATrip\Repositoy.Pattern\bin\Debug\netcoreapp2.1\Repositoy.Pattern.dll
+E:\takeatrip\TakeATrip\Repositoy.Pattern\bin\Debug\netcoreapp2.1\Repositoy.Pattern.pdb
+E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.csproj.CoreCompileInputs.cache
+E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.AssemblyInfoInputs.cache
+E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.AssemblyInfo.cs
+E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.dll
+E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.pdb

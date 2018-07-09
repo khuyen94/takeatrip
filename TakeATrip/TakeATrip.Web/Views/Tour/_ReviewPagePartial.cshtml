@@ -1,0 +1,56 @@
+﻿@model TakeATrip.Services.Models.ReviewModels.ReviewModel
+
+<section id="reviews">
+    <h2>Reviews</h2>
+    <div class="reviews-container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div id="review_summary">
+                    <strong>@Model.RateAvg</strong>
+                    <em>Superb</em>
+                    <small>Based on @Model.TotalReview reviews</small>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                @foreach (var item in Model.Rate)
+                {
+                    <div class="row">
+                        <div class="col-lg-10 col-9">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: @item.Percent%" aria-valuenow="@item.Percent" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-3"><small><strong>@item.star stars</strong></small></div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <hr>
+    <div class="reviews-container">
+        @foreach (var item in Model.Review)
+        {
+            <div class="review-box clearfix">
+                <figure class="rev-thumb">
+                    <img src="/img/avatar1.jpg" alt="">
+                </figure>
+                <div class="rev-content">
+                    <div class="rating">
+                        <i class="icon_star @( item.Rates >= 1 ? "voted" : "" )"></i><i class="icon_star @( item.Rates >= 2 ? "voted" : "" )"></i><i class="icon_star @( item.Rates >= 3 ? "voted" : "" )"></i><i class="icon_star @( item.Rates >= 4 ? "voted" : "" )"></i><i class="icon_star @( item.Rates >=5 ? "voted" : "" )"></i>
+                    </div>
+                    <div class="rev-info">
+                        @item.UserName –@item.CreatedDate:
+                    </div>
+                    <div class="rev-text">
+                        <p>
+                            @item.Comment
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- /review-container -->
+</section>

@@ -10,3 +10,15 @@ D:\OneDrive - CONASI JSC\PhuGiaSC\SoftwareDeployments\TakeATrip\branches\TakeATr
 D:\OneDrive - CONASI JSC\PhuGiaSC\SoftwareDeployments\TakeATrip\branches\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.csproj.CopyComplete
 D:\OneDrive - CONASI JSC\PhuGiaSC\SoftwareDeployments\TakeATrip\branches\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.dll
 D:\OneDrive - CONASI JSC\PhuGiaSC\SoftwareDeployments\TakeATrip\branches\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.pdb
+E:\takeatrip\TakeATrip\Service.Pattern\bin\Debug\netcoreapp2.1\Service.Pattern.deps.json
+E:\takeatrip\TakeATrip\Service.Pattern\bin\Debug\netcoreapp2.1\Service.Pattern.dll
+E:\takeatrip\TakeATrip\Service.Pattern\bin\Debug\netcoreapp2.1\Service.Pattern.pdb
+E:\takeatrip\TakeATrip\Service.Pattern\bin\Debug\netcoreapp2.1\Repositoy.Pattern.dll
+E:\takeatrip\TakeATrip\Service.Pattern\bin\Debug\netcoreapp2.1\Repositoy.Pattern.pdb
+E:\takeatrip\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.csprojAssemblyReference.cache
+E:\takeatrip\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.csproj.CoreCompileInputs.cache
+E:\takeatrip\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.AssemblyInfoInputs.cache
+E:\takeatrip\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.AssemblyInfo.cs
+E:\takeatrip\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.csproj.CopyComplete
+E:\takeatrip\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.dll
+E:\takeatrip\TakeATrip\Service.Pattern\obj\Debug\netcoreapp2.1\Service.Pattern.pdb
