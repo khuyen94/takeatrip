@@ -203,21 +203,6 @@ hr.large {
   border-top-width: 4px;
   margin-top: 60px;
 }
-
-/*form forgot password*/
-#forgot-pw .form-group i {
-    font-size: 21px;
-    font-size: 1.3125rem;
-    position: absolute;
-    left: 12px;
-    top: 34px;
-    color: #ccc;
-    width: 25px;
-    height: 25px;
-    display: block;
-    font-weight: 400 !important;
-}
-
 @media (max-width: 991px) {
   hr.large {
     margin-top: 45px;
@@ -756,11 +741,11 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
   background-color: rgba(0, 0, 0, 0.6);
 }
 .hero_in.tours:before {
-  background: url(../img/hero_in_bg_1.jpg) center center no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url(../img/tours/banner_tour_1.jpg) center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .hero_in.tours .wrapper {
   background-color: black;
@@ -2254,7 +2239,7 @@ video {
   height: 620px;
 }
 .hero_single.version_2:before {
-  background: url(../img/home_section_1.jpg) center center no-repeat;
+  background: url(../img/tours/banner_1.jpg) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -4416,17 +4401,11 @@ a.social_bt {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-a.social_bt:hover,
-button.social_bt:hover{
+a.social_bt:hover {
   -webkit-filter: brightness(115%);
   filter: brightness(115%);
 }
-a.social_bt.facebook:before,
-button.social_bt.facebook:before,
-a.social_bt.google:before,
-button.social_bt.google:before,
-a.social_bt.linkedin:before,
-button.social_bt.linkedin:before{
+a.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedin:before {
   font-family: 'ElegantIcons';
   position: absolute;
   left: 12px;
@@ -4435,30 +4414,23 @@ button.social_bt.linkedin:before{
   font-size: 1rem;
   color: #fff;
 }
-a.social_bt.facebook,
-button.social_bt.facebook {
-    background-color: #3B5998;
+a.social_bt.facebook {
+  background-color: #3B5998;
 }
-a.social_bt.facebook:before,
-button.social_bt.facebook:before
-{
+a.social_bt.facebook:before {
   content: "\e093";
 }
-a.social_bt.google,
-button.social_bt.google{
+a.social_bt.google {
   background-color: #DC4E41;
 }
-a.social_bt.google:before,
-button.social_bt.google:before{
+a.social_bt.google:before {
   content: "\e096";
   top: 12px;
 }
-a.social_bt.linkedin,
-button.social_bt.linkedin{
+a.social_bt.linkedin {
   background-color: #0077B5;
 }
-a.social_bt.linkedin:before,
-button.social_bt.linkedin:before{
+a.social_bt.linkedin:before {
   content: "\e09d";
 }
 
@@ -5646,7 +5618,7 @@ ul.list_3 li:before {
 }
 
 .call_section {
-  background: url(../img/bg_call_section.jpg) center center no-repeat fixed;
+  background: url(../img/tours/banner_2.jpg) center center no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
