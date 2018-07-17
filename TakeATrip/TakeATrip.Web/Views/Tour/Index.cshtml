@@ -59,12 +59,11 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <select class="wide" asp-for="SearchText">
-                    <option>All Categories</option>
-                    <option>Churches</option>
-                    <option>Historic</option>
-                    <option>Museums</option>
-                    <option>Walking tours</option>
+                <select class="wide" asp-for="TourType">
+                    @foreach (var item in Model.TourTypeItem)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
                 </select>
             </div>
             <div class="col-lg-2">
