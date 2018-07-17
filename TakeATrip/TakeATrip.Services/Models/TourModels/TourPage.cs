@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TakeATrip.Services.Models.BaseModels;
@@ -9,6 +10,7 @@ namespace TakeATrip.Services.Models.TourModels
     {
         public string Locations { get; set; }
         public string TourType { get; set; }
+        public SelectListItem[] TourTypeItem { get; set; }
         public string ViewType { get; set; }
     }
 

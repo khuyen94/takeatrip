@@ -26,7 +26,12 @@ namespace TakeATrip.Web.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var tourPageModel = new TourPage
+            {
+                TourTypeItem = _tourService.GetTourType()
+            };
+
+            return View(tourPageModel);
         }
         public PartialViewResult GetTourList(int pageIndex, int pageSize, string searchText, string location, string tourType, string orderBy, string viewType)
         {

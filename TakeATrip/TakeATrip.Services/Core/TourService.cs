@@ -1,4 +1,5 @@
-﻿using Repositoy.Pattern.Repositories;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Repositoy.Pattern.Repositories;
 using Repositoy.Pattern.UnitOfWork;
 using Service.Pattern;
 using System;
@@ -18,6 +19,8 @@ namespace TakeATrip.Services.Core
         TourPage GetTourPageByOrderBy(string orderBy);
 
         Tours GetTourDetail(int id);
+
+        SelectListItem[] GetTourType();
     }
     public class TourService : Service<Tours>, ITourService
     {
@@ -59,7 +62,7 @@ namespace TakeATrip.Services.Core
             {
                 tourQuery = _repository
                 .Queryable()
-                .Where(m => m.Name.Contains(query.SearchText) || m.Location.Contains(query.Location) || m.Description.Contains(query.TourType))
+                .Where(m => m.Name.Contains(query.SearchText) || m.Location.Contains(query.Location) || m.TypeId == int.Parse(query.TourType))
                 .ToArray();
             }
             return GetTourPageModel(tourQuery);
@@ -145,7 +148,8 @@ namespace TakeATrip.Services.Core
                 Rates = GetRate(m.Id).ToString(),
                 ShortContent = m.ShortDes,
                 Price = m.Price.ToString(),
-                Img = GetImageLink(m.Id)
+                Img = GetImageLink(m.Id),
+                TourType = GetTourType(m.Id)
             }).ToArray();
         }
 
@@ -160,6 +164,28 @@ namespace TakeATrip.Services.Core
             var tour = _repository.GetBaseQuery().Where(m => m.Id == id).FirstOrDefault();
             tour.Views = tour.Views + 1;
             _unitOfWorkAsync.SaveChanges();
+        }
+
+        public SelectListItem[] GetTourType()
+        {
+            return _repository.GetRepository<TourTypes>()
+                .Queryable()
+                .OrderBy(m => m.Name)
+                .Select(m=>new SelectListItem {
+                    Text = m.Name,
+                    Value = m.Id.ToString()
+                })
+                .ToArray();
+        }
+
+        public string  GetTourType(int id)
+        {
+            return _repository.GetRepository<TourTypes>()
+                .Queryable()
+                .Where(m => m.Id == id)
+                .OrderBy(m => m.Name)
+                .Select(m => m.Name)
+                .FirstOrDefault();
         }
     }
 }
