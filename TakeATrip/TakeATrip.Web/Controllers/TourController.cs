@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TakeATrip.Services.Core;
@@ -33,7 +34,7 @@ namespace TakeATrip.Web.Controllers
 
             return View(tourPageModel);
         }
-        public PartialViewResult GetTourList(int pageIndex, int pageSize, string searchText, string location, string tourType, string orderBy, string viewType)
+        public PartialViewResult GetTourList(int pageIndex, int pageSize, string searchText, string location, string tourType, string orderBy)
         {
             var query = new GetTourPageQuery
             {
@@ -46,16 +47,8 @@ namespace TakeATrip.Web.Controllers
             };
 
             var tourPage = _tourService.GetTourPage(query);
-            if (string.IsNullOrEmpty(viewType))
-            {
-                tourPage.ViewType = "";
-                return PartialView("_TourPagePartial", GetPath(tourPage));
-            }
-            else
-            {
-                tourPage.ViewType = "true";
-                return PartialView("_TourListPagePartial", GetPath(tourPage));
-            }
+
+            return PartialView("_TourPagePartial", GetPath(tourPage));
         }
 
         public PartialViewResult GetTourListByOrderBy(string orderBy)
@@ -67,17 +60,6 @@ namespace TakeATrip.Web.Controllers
                 return PartialView("_TourPagePartial", GetPath(tourPage));
             }
             return PartialView("_TourPagePartial");
-        }
-
-        public PartialViewResult GetTourIsotopeListByOrderBy(string orderBy)
-        {
-            if (!string.IsNullOrEmpty(orderBy))
-            {
-                var tourPage = _tourService.GetTourPageByOrderBy(orderBy);
-
-                return PartialView("_TourIsotopePagePartial", tourPage);
-            }
-            return PartialView("_TourIsotopePagePartial");
         }
 
         public IActionResult Detail(string id)
@@ -100,6 +82,41 @@ namespace TakeATrip.Web.Controllers
                 item.Img = _configuration["ImgPath"] + "/" + item.Id + "/" + item.Img;
             }
             return page;
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var tourPageModel = new CreateTourViewModel
+            {
+                TourTypeItem = _tourService.GetTourType()
+            };
+
+            return View(tourPageModel);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Create(CreateTourViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var tourModel = _mapper.Map<CreatTourModel>(model);
+                var result = _tourService.CreateTour(tourModel);
+                //switch (result)
+                //{
+                //    case -1:
+                //        break;
+                //    case -1:
+                //        break;
+                //    case -1:
+                //        break;
+                //    default
+                //        break;
+                //}
+                return View(model);
+            }
+            return View(model);
         }
     }
 }

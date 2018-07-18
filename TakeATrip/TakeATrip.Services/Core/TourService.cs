@@ -21,6 +21,8 @@ namespace TakeATrip.Services.Core
         Tours GetTourDetail(int id);
 
         SelectListItem[] GetTourType();
+
+        int CreateTour(CreatTourModel model);
     }
     public class TourService : Service<Tours>, ITourService
     {
@@ -126,6 +128,11 @@ namespace TakeATrip.Services.Core
 
         }
 
+        private int GetTotalReviews(int id)
+        {
+            return _repository.GetRepository<Reviews>().GetBaseQuery().Where(m => m.TourId == id).Count();
+        }
+
         private string GetImageLink(int id)
         {
             return _repository
@@ -144,10 +151,10 @@ namespace TakeATrip.Services.Core
                 Id = m.Id.ToString(),
                 TourName = m.Name,
                 Locations = m.Location,
-                Views = m.Views,
-                Rates = GetRate(m.Id).ToString(),
+                ToTalReViews = GetTotalReviews(m.Id),
+                Rates = GetRate(m.Id),
                 ShortContent = m.ShortDes,
-                Price = m.Price.ToString(),
+                Price = string.Format("{0:N0}", m.Price),
                 Img = GetImageLink(m.Id),
                 TourType = GetTourType(m.Id)
             }).ToArray();
@@ -186,6 +193,39 @@ namespace TakeATrip.Services.Core
                 .OrderBy(m => m.Name)
                 .Select(m => m.Name)
                 .FirstOrDefault();
+        }
+
+        public int CreateTour(CreatTourModel model)
+        {
+            try
+            {
+                var tour = new Tours
+                {
+                    Name = model.TourName,
+                    ShortDes = model.ShortDescription,
+                    Description = model.Description,
+                    Plan = model.Plan,
+                    Price = model.Price,
+                    Location = model.Locations,
+                    Status = 1,
+                    Views = 0,
+                    TypeId = int.Parse(model.TourType),
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = "hungvd"
+                };
+
+                _repository.Insert(tour);
+                var reult = _unitOfWorkAsync.SaveChanges();
+                if(reult > 0)
+                {
+                    return 1;
+                }
+                return 0;
+            }
+             catch(Exception ex)
+            {
+                return -1;
+            }
         }
     }
 }

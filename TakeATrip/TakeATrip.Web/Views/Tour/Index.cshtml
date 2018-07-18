@@ -26,15 +26,6 @@
                     <label for="latest">Latest</label>
                 </div>
             </li>
-            <li>
-                <div class="layout_view">
-                    <a href="#0" class="active" onclick="ShowTourGrid()"><i class="icon-th"></i></a>
-                    <a href="#0" onclick="ShowTourList()"><i class="icon-th-list"></i></a>
-                </div>
-            </li>
-            <li>
-                <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
-            </li>
         </ul>
     </div>
     <!-- /container -->
@@ -77,7 +68,7 @@
         <!-- /row -->
     </div>
     <!-- /wrapper-grid -->
-    <p class="text-center"><a href="#" onclick="LoadMore()" class="btn_1 rounded add_top_30">Load more</a></p>
+    <p class="text-center"><a href="javascript:void(0)" onclick="LoadMore()" class="btn_1 rounded add_top_30">Load more</a></p>
 </div>
 <!-- /container -->
 <div class="bg_color_1">
@@ -117,7 +108,7 @@
             loadTourPage(0);
         });
 
-        var loadTourPage = function (pageIndex, searchText, location, tourType,orderBy,viewType) {
+        var loadTourPage = function (pageIndex, searchText, location, tourType,orderBy) {
 
             $.ajax({
                 url: '@Url.Action("GetTourList", "Tour")',
@@ -128,7 +119,6 @@
                         location: location,
                         tourType: tourType,
                         orderBy: orderBy,
-                        viewType: viewType
                 },
                 type: 'GET',
                 success: function (data) {
@@ -143,7 +133,7 @@
             var location = $("#Location").val();
             var tourType = $("#TourType").val();
             var viewType = $("#ViewType").val();
-            loadTourPage(0, searchText, location, tourType, '', viewType);
+            loadTourPage(0, searchText, location, tourType);
     }
 
 
@@ -161,36 +151,24 @@
             });
     }
 
-    function ShowTourList() {
-        loadTourPage(0,'','','','','true');
-    }
-
-    function ShowTourGrid() {
-        loadTourPage(0);
-    }
-
-
     function LoadMore() {
-        var pageIndex = $("#PageIndex").val();
+        var pageIndex = Number($("#PageIndex").val());
         $.ajax({
                 url: '@Url.Action("GetTourList", "Tour")',
                 data: {
-                    pageIndex: pageIndex+1,
-                        pageSize: 3,
+                        pageIndex: pageIndex+1,
+                        pageSize: 6,
                         searchText: '',
                         location: '',
                         tourType: '',
                         orderBy: '',
-                        viewType: ''
                 },
                 type: 'GET',
-            success: function (data) {
-                    alert
-                    var containerId = $("#tour-page-container").attr('id');
-                $("#" + containerId).append(data);
-                $("#PageIndex").val(pageIndex+1);
-                }
-            });
+                success: function (data) {
+                        $("#tour-page-container").append(data);
+                        $("#PageIndex").val(pageIndex+1);
+                    }
+                });
     }
 
 </script>

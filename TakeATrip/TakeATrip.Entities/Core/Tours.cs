@@ -9,6 +9,7 @@ namespace TakeATrip.Entities.Core
         public string Name { get; set; }
         public string ShortDes { get; set; }
         public string Description { get; set; }
+        public string Plan { get; set; }
         public decimal? Price { get; set; }
         public string Location { get; set; }
         public int Status { get; set; }
