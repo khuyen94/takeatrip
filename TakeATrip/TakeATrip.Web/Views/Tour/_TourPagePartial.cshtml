@@ -7,12 +7,12 @@
         <div class="box_grid">
             <figure>
                 <a href="#0" class="wish_bt"></a>
-                <a asp-controller="Tour" asp-action="Update" asp-route-id="@item.Id"><img src="@item.ThumbNail" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+                <a asp-controller="Tour" asp-action="Detail" asp-route-id="@item.Id"><img src="@item.ThumbNail" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
                 <small>Historic</small>
             </figure>
             <div class="wrapper">
                 <h3><a asp-controller="Tour" asp-action="Detail" asp-route-id="@item.Id">@item.TourName</a></h3>
-                <label class="shortcontent">@item.ShortContent</label>
+                <label>@item.ShortContent</label>
                 <span class="price">From <strong>@item.Price VND</strong></span>
             </div>
             <ul>

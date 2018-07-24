@@ -184,11 +184,17 @@ namespace TakeATrip.Services.Core
                     Id = m.Id,
                     TourName = m.Name,
                     Description = m.Description,
-                    Locations = m.Location,
+                    ShortDescription = m.ShortDes,
+                    Location = m.Location,
                     Plan = m.Plan,
                     Price = string.Format("{0:N0}", m.Price),
                     TourType = m.TypeId,
-                    Views = m.Views
+                    Views = m.Views,
+                    Duration = m.Duration,
+                    DurationUnit = m.DurationUnit,
+                    Included = m.Included,
+                    Excluded = m.Excluded,
+                    ThumbNailLink = GetImageLink(id),
                 })
                 .FirstOrDefault();
         }
@@ -343,15 +349,19 @@ namespace TakeATrip.Services.Core
                 _repository.Update(tour);
 
                 _unitOfWorkAsync.SaveChanges();
-                var isSuccess = UploadImage(tour.Id,model.ThumbNail,model.UpdatedBy);
-                if (isSuccess > 0)
+                if(model.ThumbNail != null)
                 {
-                    return 1;
+                    var isSuccess = UploadImage(tour.Id, model.ThumbNail, model.UpdatedBy);
+                    if (isSuccess > 0)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return -1;
+                    }
                 }
-                else
-                {
-                    return -1;
-                }
+                return 1;
             }
             catch (Exception ex)
             {

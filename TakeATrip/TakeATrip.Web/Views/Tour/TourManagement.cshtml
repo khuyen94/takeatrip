@@ -111,7 +111,7 @@
         var loadTourPage = function (pageIndex, searchText, location, tourType,orderBy) {
 
             $.ajax({
-                url: '@Url.Action("GetTourList", "Tour")',
+                url: '@Url.Action("GetTourManagementList", "Tour")',
                 data: {
                         pageIndex: pageIndex,
                         pageSize: 6,
