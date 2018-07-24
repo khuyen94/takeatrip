@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using TakeATrip.Services.Core;
 using TakeATrip.Services.Models.TourModels;
 using TakeATrip.Web.ViewModels.TourViewModels;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using TakeATrip.Entities.IdentityDB;
 
 namespace TakeATrip.Web.Controllers
 {
@@ -18,13 +24,21 @@ namespace TakeATrip.Web.Controllers
         private IReviewService _reviewService;
         private IConfiguration _configuration;
         private IMapper _mapper;
-        public TourController(ITourService tourService, IReviewService reviewService, IConfiguration configuration, IMapper mapper)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public TourController(ITourService tourService,
+                              IReviewService reviewService,
+                              IConfiguration configuration,
+                              IMapper mapper,
+                              UserManager<ApplicationUser> userManager)
         {
             _tourService = tourService;
             _reviewService = reviewService;
             _configuration = configuration;
             _mapper = mapper;
+            _userManager = userManager;
         }
+
         public IActionResult Index()
         {
             var tourPageModel = new TourPage
@@ -34,7 +48,8 @@ namespace TakeATrip.Web.Controllers
 
             return View(tourPageModel);
         }
-        public PartialViewResult GetTourList(int pageIndex, int pageSize, string searchText, string location, string tourType, string orderBy)
+
+        public async Task<PartialViewResult> GetTourList(int pageIndex, int pageSize, string searchText, string location, string tourType)
         {
             var query = new GetTourPageQuery
             {
@@ -43,7 +58,6 @@ namespace TakeATrip.Web.Controllers
                 SearchText = searchText,
                 Location = location,
                 TourType = tourType,
-                OrderBy = orderBy
             };
 
             var tourPage = _tourService.GetTourPage(query);
@@ -79,12 +93,13 @@ namespace TakeATrip.Web.Controllers
         {
             foreach (var item in page.Items)
             {
-                item.Img = _configuration["ImgPath"] + "/" + item.Id + "/" + item.Img;
+                item.ThumbNail = _configuration["ImgPath"] + "/" + item.Id + "/" + item.ThumbNail;
             }
             return page;
         }
 
-        [HttpGet]
+        //[Authorize]
+        //[HttpGet]
         public IActionResult Create()
         {
             var tourPageModel = new CreateTourViewModel
@@ -95,27 +110,107 @@ namespace TakeATrip.Web.Controllers
             return View(tourPageModel);
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public IActionResult Create(CreateTourViewModel model)
+        //[Authorize]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateTourViewModel model)
         {
+            model.TourTypeItem = _tourService.GetTourType();
             if (ModelState.IsValid)
             {
                 var tourModel = _mapper.Map<CreatTourModel>(model);
+                var user = await _userManager.GetUserAsync(User);
+                tourModel.CreatedBy = user.UserName;
                 var result = _tourService.CreateTour(tourModel);
-                //switch (result)
-                //{
-                //    case -1:
-                //        break;
-                //    case -1:
-                //        break;
-                //    case -1:
-                //        break;
-                //    default
-                //        break;
-                //}
-                return View(model);
+                switch (result)
+                {
+                    case 1:
+                        return Redirect("/Tour/Index");
+                    case -1:
+                        ModelState.AddModelError("ModelError", "Creat tour failed. Please contact to admin");
+                        return View(model);
+                    case -2:
+                        ModelState.AddModelError("ModelError", "Creat tour failed. Please recheck your image");
+                        return View(model);
+                    default:
+                        return Redirect("/Tour/Index");
+                }
+
             }
+            ModelState.AddModelError("ModelError", "Please recheck your data");
+            return View(model);
+        }
+
+        [Authorize]
+        public IActionResult TourManagement()
+        {
+            var tourPageModel = new TourPage
+            {
+                TourTypeItem = _tourService.GetTourType()
+            };
+
+            return View(tourPageModel);
+        }
+
+        [Authorize]
+        public async Task<PartialViewResult> GetTourManagementList(int pageIndex, int pageSize, string searchText, string location, string tourType)
+        {
+
+            var user = await _userManager.GetUserAsync(User);
+            var query = new GetTourPageQuery
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                SearchText = searchText,
+                Location = location,
+                TourType = tourType,
+                CreatedBy = user.UserName
+            };
+
+            var tourPage = _tourService.GetTourPage(query);
+
+            return PartialView("_TourManagementPartial", GetPath(tourPage));
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Update(string id)
+        {
+            var tourdetail = _tourService.GetTourDetail(int.Parse(id));
+
+            var updateTourViewModel = _mapper.Map<UpdateTourViewModel>(tourdetail);
+
+            return View(updateTourViewModel);
+        }
+
+        //[Authorize]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(UpdateTourViewModel model)
+        {
+            model.TourTypeItem = _tourService.GetTourType();
+            if (ModelState.IsValid)
+            {
+                var updateTourModel = _mapper.Map<UpdateTourModel>(model);
+                var user = await _userManager.GetUserAsync(User);
+                updateTourModel.UpdatedBy = user.UserName;
+                var result = _tourService.UpdateTour(updateTourModel);
+                switch (result)
+                {
+                    case 1:
+                        return Redirect("/Tour/TourManagement");
+                    case -1:
+                        ModelState.AddModelError("ModelError", "Creat tour failed. Please contact to admin");
+                        return View(model);
+                    case -2:
+                        ModelState.AddModelError("ModelError", "Creat tour failed. Please recheck your image");
+                        return View(model);
+                    default:
+                        return Redirect("/Tour/Index");
+                }
+
+            }
+            ModelState.AddModelError("ModelError", "Please recheck your data");
             return View(model);
         }
     }

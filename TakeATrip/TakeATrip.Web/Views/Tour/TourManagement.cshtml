@@ -1,0 +1,171 @@
+﻿@model TakeATrip.Services.Models.TourModels.TourPage;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="hero_in tours">
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="fadeInUp"><span></span>Paris tours grid</h1>
+        </div>
+    </div>
+</section>
+<!--/hero_in-->
+
+<div class="filters_listing sticky_horizontal">
+    <div class="container">
+        <ul class="clearfix">
+            <li>
+                <div class="switch-field">
+                    <input type="radio" id="all" name="listing_filter" value="all" checked onclick="SortingEvenHandlers($(this))">
+                    <label for="all">All</label>
+                    <input type="radio" id="popular" name="listing_filter" value="popular" onclick="SortingEvenHandlers($(this))">
+                    <label for="popular">Popular</label>
+                    <input type="radio" id="latest" name="listing_filter" value="latest" onclick="SortingEvenHandlers($(this))">
+                    <label for="latest">Latest</label>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- /container -->
+</div>
+<!-- /filters -->
+<div class="collapse" id="collapseMap">
+    <div id="map" class="map"></div>
+</div>
+<!-- End Map -->
+<div class="container margin_60_35">
+    <div class="col-lg-12">
+        <div class="row no-gutters custom-search-input-2 inner">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <input asp-for="SearchText" class="form-control" type="text" placeholder="What are you looking for...">
+                    <i class="icon_search"></i>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <input asp-for="Locations" class="form-control" type="text" placeholder="Where">
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <select class="wide" asp-for="TourType">
+                    @foreach (var item in Model.TourTypeItem)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <input type="submit" name="btn-search" class="btn_search" onclick="SearchClick()" value="Search">
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <div class="wrapper-grid">
+        <div id="tour-page-container"></div>
+        <!-- /row -->
+    </div>
+    <!-- /wrapper-grid -->
+    <p class="text-center"><a href="javascript:void(0)" onclick="LoadMore()" class="btn_1 rounded add_top_30">Load more</a></p>
+</div>
+<!-- /container -->
+<div class="bg_color_1">
+    <div class="container margin_60_35">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="#0" class="boxed_list">
+                    <i class="pe-7s-help2"></i>
+                    <h4>Need Help? Contact us</h4>
+                    <p>Cum appareat maiestatis interpretaris et, et sit.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#0" class="boxed_list">
+                    <i class="pe-7s-wallet"></i>
+                    <h4>Payments</h4>
+                    <p>Qui ea nemore eruditi, magna prima possit eu mei.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#0" class="boxed_list">
+                    <i class="pe-7s-note2"></i>
+                    <h4>Cancel Policy</h4>
+                    <p>Hinc vituperata sed ut, pro laudem nonumes ex.</p>
+                </a>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /bg_color_1 -->
+<script src="~/js/pagination.js"></script>
+<script src="~/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
+        $(function () {
+            loadTourPage(0);
+        });
+
+        var loadTourPage = function (pageIndex, searchText, location, tourType,orderBy) {
+
+            $.ajax({
+                url: '@Url.Action("GetTourList", "Tour")',
+                data: {
+                        pageIndex: pageIndex,
+                        pageSize: 6,
+                        searchText: searchText,
+                        location: location,
+                        tourType: tourType
+                },
+                type: 'GET',
+                success: function (data) {
+                    var containerId = $("#tour-page-container").attr('id');
+                    $("#" + containerId).html(data);
+                }
+            });
+        }
+
+        function SearchClick() {
+            var searchText = $("#SearchText").val();
+            var location = $("#Location").val();
+            var tourType = $("#TourType").val();
+            loadTourPage(0, searchText, location, tourType);
+    }
+
+
+    function SortingEvenHandlers($this) {
+        $.ajax({
+                url: '@Url.Action("GetTourListByOrderBy", "Tour")',
+            data: {
+                orderBy: $this.val()
+                },
+                type: 'GET',
+            success: function (data) {
+                    var containerId = $("#tour-page-container").attr('id');
+                    $("#" + containerId).html(data);
+                }
+            });
+    }
+
+    function LoadMore() {
+        var pageIndex = Number($("#PageIndex").val());
+        $.ajax({
+                url: '@Url.Action("GetTourManagementList", "Tour")',
+                data: {
+                        pageIndex: pageIndex+1,
+                        pageSize: 6,
+                        searchText: '',
+                        location: '',
+                        tourType: '',
+                },
+                type: 'GET',
+                success: function (data) {
+                        $("#tour-page-container").append(data);
+                        $("#PageIndex").val(pageIndex+1);
+                    }
+                });
+    }
+
+</script>

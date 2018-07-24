@@ -7396,3 +7396,11 @@ a.social_bt {
         display: none;
     }
 }
+
+.logo_normal{
+    margin : -15% 0 0 0 !important;
+}
+
+.logo_sticky {
+    margin: -15% 0 0 0 !important;
+}

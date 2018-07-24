@@ -71,6 +71,7 @@ namespace TakeATrip.Web
 
             services.AddSingleton<ITourService, TourService>();
             services.AddSingleton<IReviewService, ReviewService>();
+            services.AddSingleton<IImagesServices, ImagesService>();
 
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddAutoMapper();
@@ -88,21 +89,31 @@ namespace TakeATrip.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseStatusCodePages();
+            //app.UseStatusCodePages();
 
-            app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
+            //app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
 
             //if (env.IsDevelopment())
             //{
             //    app.UseExceptionHandler("/Home/Error/{0}");
-            //    //app.UseBrowserLink();
-            //    //app.UseDeveloperExceptionPage();
-            //    //app.UseDatabaseErrorPage();
+            //    app.UseBrowserLink();
+            //    app.UseDeveloperExceptionPage();
+            //    app.UseDatabaseErrorPage();
             //}
             //else
             //{
             //    app.UseExceptionHandler("/Home/Error/{0}");
             //}
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
             app.UseStaticFiles();
 

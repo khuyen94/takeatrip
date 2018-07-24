@@ -23,6 +23,7 @@ namespace TakeATrip.Services.Models.TourModels
         public string ShortContent { get; set; }
         public string Price { get; set; }
         public string TourType { get; set; }
-        public string Img { get; set; }
+        public string ThumbNail { get; set; }
+        public string Duration { get; set; }
     }
 }

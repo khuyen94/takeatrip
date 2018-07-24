@@ -20,6 +20,7 @@ namespace TakeATrip.Services.Core
         private readonly IRepositoryAsync<Reviews> _repository;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+
         public ReviewService(IRepositoryAsync<Reviews> repository, IUnitOfWorkAsync unitOfWorkAsync) : base(repository)
         {
             _repository = repository;

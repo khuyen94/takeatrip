@@ -117,8 +117,7 @@
                         pageSize: 6,
                         searchText: searchText,
                         location: location,
-                        tourType: tourType,
-                        orderBy: orderBy,
+                        tourType: tourType
                 },
                 type: 'GET',
                 success: function (data) {
@@ -132,7 +131,6 @@
             var searchText = $("#SearchText").val();
             var location = $("#Location").val();
             var tourType = $("#TourType").val();
-            var viewType = $("#ViewType").val();
             loadTourPage(0, searchText, location, tourType);
     }
 
@@ -161,7 +159,6 @@
                         searchText: '',
                         location: '',
                         tourType: '',
-                        orderBy: '',
                 },
                 type: 'GET',
                 success: function (data) {
