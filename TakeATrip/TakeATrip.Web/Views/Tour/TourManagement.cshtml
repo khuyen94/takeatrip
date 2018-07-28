@@ -1,4 +1,4 @@
-﻿@model TakeATrip.Services.Models.TourModels.TourPage;
+﻿
 
 @{
     ViewData["Title"] = "Index";
@@ -35,41 +35,7 @@
     <div id="map" class="map"></div>
 </div>
 <!-- End Map -->
-<div class="container margin_60_35">
-    <div class="col-lg-12">
-        <div class="row no-gutters custom-search-input-2 inner">
-            <div class="col-lg-4">
-                <div class="form-group">
-                    <input asp-for="SearchText" class="form-control" type="text" placeholder="What are you looking for...">
-                    <i class="icon_search"></i>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <input asp-for="Locations" class="form-control" type="text" placeholder="Where">
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <select class="wide" asp-for="TourType">
-                    @foreach (var item in Model.TourTypeItem)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-            </div>
-            <div class="col-lg-2">
-                <input type="submit" name="btn-search" class="btn_search" onclick="SearchClick()" value="Search">
-            </div>
-        </div>
-        <!-- /row -->
-    </div>
-    <div class="wrapper-grid">
-        <div id="tour-page-container"></div>
-        <!-- /row -->
-    </div>
-    <!-- /wrapper-grid -->
-    <p class="text-center"><a href="javascript:void(0)" onclick="LoadMore()" class="btn_1 rounded add_top_30">Load more</a></p>
-</div>
+<div id="tour-page-container" class="loading-container"></div>
 <!-- /container -->
 <div class="bg_color_1">
     <div class="container margin_60_35">
@@ -101,14 +67,15 @@
     <!-- /container -->
 </div>
 <!-- /bg_color_1 -->
-<script src="~/js/pagination.js"></script>
+
 <script src="~/js/jquery-2.2.4.min.js"></script>
+<script src="~/js/pagination.js"></script>
 <script type="text/javascript">
         $(function () {
             loadTourPage(0);
         });
 
-        var loadTourPage = function (pageIndex, searchText, location, tourType,orderBy) {
+        var loadTourPage = function (pageIndex, searchText, location, tourType) {
 
             $.ajax({
                 url: '@Url.Action("GetTourManagementList", "Tour")',
@@ -123,49 +90,22 @@
                 success: function (data) {
                     var containerId = $("#tour-page-container").attr('id');
                     $("#" + containerId).html(data);
+
+                    registerSearchEventHandlers(containerId, loadTourPage);
+                    registerPagingEventHandlers(containerId, loadTourPage);
+                }
+            });
+    }
+
+        function registerSearchEventHandlers(containerId, callback) {
+            $("#" + containerId + " .btn-search").on('click', function () {
+                var searchText = $("#SearchText").val();
+                var location = $("#Location").val();
+                var tourType = $("#TourType").val();
+                if (typeof callback == 'function') {
+                    loadTourPage(0, searchText, location, tourType);
                 }
             });
         }
-
-        function SearchClick() {
-            var searchText = $("#SearchText").val();
-            var location = $("#Location").val();
-            var tourType = $("#TourType").val();
-            loadTourPage(0, searchText, location, tourType);
-    }
-
-
-    function SortingEvenHandlers($this) {
-        $.ajax({
-                url: '@Url.Action("GetTourListByOrderBy", "Tour")',
-            data: {
-                orderBy: $this.val()
-                },
-                type: 'GET',
-            success: function (data) {
-                    var containerId = $("#tour-page-container").attr('id');
-                    $("#" + containerId).html(data);
-                }
-            });
-    }
-
-    function LoadMore() {
-        var pageIndex = Number($("#PageIndex").val());
-        $.ajax({
-                url: '@Url.Action("GetTourManagementList", "Tour")',
-                data: {
-                        pageIndex: pageIndex+1,
-                        pageSize: 6,
-                        searchText: '',
-                        location: '',
-                        tourType: '',
-                },
-                type: 'GET',
-                success: function (data) {
-                        $("#tour-page-container").append(data);
-                        $("#PageIndex").val(pageIndex+1);
-                    }
-                });
-    }
 
 </script>

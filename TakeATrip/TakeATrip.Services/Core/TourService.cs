@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TakeATrip.Entities.Core;
 using TakeATrip.Repositories.Repositories;
 using TakeATrip.Services.Models.ImageModels;
@@ -25,10 +26,11 @@ namespace TakeATrip.Services.Core
 
         SelectListItem[] GetTourType();
 
-        int CreateTour(CreatTourModel model);
+        Task<int> CreateTour(CreatTourModel model);
 
-        int UpdateTour(UpdateTourModel model);
+        Task<int> UpdateTour(UpdateTourModel model);
     }
+
     public class TourService : Service<Tours>, ITourService
     {
         private readonly IRepositoryAsync<Tours> _repository;
@@ -64,24 +66,30 @@ namespace TakeATrip.Services.Core
 
         private TourPageItem[] GetTourItems(GetTourPageQuery query)
         {
-            Tours[] tourQuery = null;
+            IQueryable<Tours> tourQuery = null;
             if (string.IsNullOrEmpty(query.SearchText) && string.IsNullOrEmpty(query.Location) && string.IsNullOrEmpty(query.TourType))
             {
-                tourQuery = _repository.GetBaseQuery().ToArray();
+                tourQuery = _repository.Queryable();
             }
             else
             {
                 tourQuery = _repository
                 .Queryable()
-                .Where(m => m.Name.Contains(query.SearchText) || m.Location.Contains(query.Location) || m.TypeId == int.Parse(query.TourType))
-                .ToArray();
+                .Where(m => m.Name.Contains(query.SearchText) || m.Location.Contains(query.Location) || m.TypeId == int.Parse(query.TourType));
             }
 
             if (!string.IsNullOrEmpty(query.CreatedBy))
             {
-                tourQuery = tourQuery.Where(m => m.CreatedBy == query.CreatedBy).ToArray();
+                tourQuery = tourQuery.Where(m => m.CreatedBy == query.CreatedBy);
             }
-            return GetTourPageModel(tourQuery);
+            else
+            {
+                tourQuery = tourQuery.Where(m=>m.Status == 1);
+            }
+
+            tourQuery = tourQuery.OrderByDescending(m => m.CreatedDate);
+
+            return GetTourPageModel(tourQuery.ToArray());
         }
 
         public TourPage GetTourPageByOrderBy(string orderBy)
@@ -106,16 +114,16 @@ namespace TakeATrip.Services.Core
             switch (orderBy)
             {
                 case "all":
-                    tourQuery = _repository.GetBaseQuery()
+                    tourQuery = _repository.Queryable()
                                            .ToArray();
                     break;
                 case "popular":
-                    tourQuery = _repository.GetBaseQuery()
+                    tourQuery = _repository.Queryable()
                                            .OrderByDescending(m => m.Views)
                                            .ToArray();
                     break;
                 case "latest":
-                    tourQuery = _repository.GetBaseQuery()
+                    tourQuery = _repository.Queryable()
                                            .OrderByDescending(m => m.CreatedDate)
                                            .ToArray();
                     break;
@@ -130,7 +138,7 @@ namespace TakeATrip.Services.Core
         {
             var rateList = _repository
                 .GetRepository<Reviews>()
-                .GetBaseQuery()
+                .Queryable()
                 .Where(m => m.TourId == id)
                 .ToList();
 
@@ -144,14 +152,14 @@ namespace TakeATrip.Services.Core
 
         private int GetTotalReviews(int id)
         {
-            return _repository.GetRepository<Reviews>().GetBaseQuery().Where(m => m.TourId == id).Count();
+            return _repository.GetRepository<Reviews>().Queryable().Where(m => m.TourId == id).Count();
         }
 
         private string GetImageLink(int id)
         {
             return _repository
                 .GetRepository<Images>()
-                .GetBaseQuery()
+                .Queryable()
                 .Where(m => m.TourId == id)
                 .Select(m => m.Link)
                 .FirstOrDefault();
@@ -171,14 +179,16 @@ namespace TakeATrip.Services.Core
                 Price = string.Format("{0:N0}", m.Price),
                 ThumbNail = GetImageLink(m.Id),
                 TourType = GetTourType(m.Id),
-                Duration = m.Duration + " " + m.DurationUnit
+                Duration = m.Duration + " " + m.DurationUnit,
+                Status = (TourStatus)m.Status,
+                CreatedDate = string.Format("{0:dd/MM/yyyy}", m.CreatedDate)
             }).ToArray();
         }
 
         public TourDetailModel GetTourDetail(int id)
         {
             Increaseview(id);
-            return _repository.GetBaseQuery().Where(m => m.Id == id)
+            return _repository.Queryable().Where(m => m.Id == id)
                 .Select(m => new TourDetailModel
                 {
                     Id = m.Id,
@@ -201,7 +211,7 @@ namespace TakeATrip.Services.Core
 
         private void Increaseview(int id)
         {
-            var tour = _repository.GetBaseQuery().Where(m => m.Id == id).FirstOrDefault();
+            var tour = _repository.Queryable().Where(m => m.Id == id).FirstOrDefault();
             tour.Views = tour.Views + 1;
             _unitOfWorkAsync.SaveChanges();
         }
@@ -229,7 +239,7 @@ namespace TakeATrip.Services.Core
                 .FirstOrDefault();
         }
 
-        public int CreateTour(CreatTourModel model)
+        public async Task<int> CreateTour(CreatTourModel model)
         {
             try
             {
@@ -253,8 +263,8 @@ namespace TakeATrip.Services.Core
                 };
                 _repository.Insert(tour);
                 _unitOfWorkAsync.SaveChanges();
-                var isSuccess = UploadImage(tour.Id, model.ThumbNail, model.CreatedBy);
-                if (isSuccess > 0)
+                var isSuccess = _imagesServices.UploadImage(tour.Id, model.ThumbNail, model.CreatedBy);
+                if (await isSuccess > 0)
                 {
                     return 1;
                 }
@@ -269,63 +279,7 @@ namespace TakeATrip.Services.Core
             }
         }
 
-        public int UploadImage(int tourId, IFormFile thumbNail, string createdBy)
-        {
-            string path = null;
-            try
-            {
-                path = Path.Combine(
-                       Directory.GetCurrentDirectory(), "wwwroot/img/tours/" + tourId, thumbNail.FileName);
-
-                var directory = new DirectoryInfo("wwwroot/img/tours/" + tourId);
-
-                if (!directory.Exists)
-                {
-                    directory.Create();
-                }
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    thumbNail.CopyToAsync(stream);
-                }
-
-                var image = _repository.GetRepository<Images>().GetBaseQuery().Where(m => m.TourId == tourId).FirstOrDefault();
-                if (image == null)
-                {
-                    image = new Images
-                    {
-                        TourId = tourId,
-                        Link = thumbNail.FileName,
-                        Status = 1,
-                        CreatedBy = createdBy,
-                        CreatedDate = DateTime.Now
-                    };
-                }
-                else
-                {
-                    image.Link = thumbNail.FileName;
-                    image.CreatedBy = createdBy;
-                    image.CreatedDate = DateTime.Now;
-                }
-
-                _repository.GetRepository<Images>().Insert(image);
-                _unitOfWorkAsync.SaveChanges();
-                return 1;
-            }
-
-            catch (Exception ex)
-            {
-                var directory = new DirectoryInfo(path);
-
-                if (directory.Exists)
-                {
-                    directory.Delete();
-                }
-                return -2;
-            }
-        }
-
-        public int UpdateTour(UpdateTourModel model)
+        public async Task<int> UpdateTour(UpdateTourModel model)
         {
             try
             {
@@ -349,10 +303,10 @@ namespace TakeATrip.Services.Core
                 _repository.Update(tour);
 
                 _unitOfWorkAsync.SaveChanges();
-                if(model.ThumbNail != null)
+                if (model.ThumbNail != null)
                 {
-                    var isSuccess = UploadImage(tour.Id, model.ThumbNail, model.UpdatedBy);
-                    if (isSuccess > 0)
+                    var isSuccess = _imagesServices.UploadImage(tour.Id, model.ThumbNail, model.UpdatedBy);
+                    if (await isSuccess > 0)
                     {
                         return 1;
                     }

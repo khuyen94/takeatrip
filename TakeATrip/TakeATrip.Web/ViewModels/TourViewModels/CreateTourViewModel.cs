@@ -11,13 +11,13 @@ namespace TakeATrip.Web.ViewModels.TourViewModels
     public class CreateTourViewModel
     {
         [Required]
-        [StringLength(250, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 20)]
+        [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 10)]
         [DataType(DataType.Text)]
         [Display(Name = "Tour Name")]
         public string TourName { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 20)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 10)]
         [DataType(DataType.Text)]
         [Display(Name = "Location")]
         public string Location { get; set; }
@@ -68,6 +68,7 @@ namespace TakeATrip.Web.ViewModels.TourViewModels
         [Display(Name = "Duration Unit")]
         public string DurationUnit { get; set; }
 
+        [Required]
         [Display(Name = "Thumb Nail")]
         public IFormFile ThumbNail { get; set; }
 

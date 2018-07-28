@@ -25,5 +25,15 @@ namespace TakeATrip.Services.Models.TourModels
         public string TourType { get; set; }
         public string ThumbNail { get; set; }
         public string Duration { get; set; }
+        public TourStatus Status { get; set; }
+        public string CreatedDate { get; set; }
+    }
+
+    public enum TourStatus
+    {
+        Pending,
+        Rejected,
+        Active,
+        Inactive
     }
 }

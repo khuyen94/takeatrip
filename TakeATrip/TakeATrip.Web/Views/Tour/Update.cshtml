@@ -14,7 +14,7 @@
     <div class="container">
         <form asp-controller="Tour" asp-action="Update" method="post" class="form-horizontal" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
-            <input asp-for="Id" class="form-control" hidden="hidden"/>
+            <input asp-for="Id" class="form-control" hidden="hidden" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div><br />
             @Html.ValidationMessage("ModelError", new { @class = "text-danger" })
             <div class="form-group row">
@@ -59,7 +59,7 @@
             <div class="form-group row">
                 <div class="form-group col-md-12">
                     <label asp-for="ThumbNail"></label>
-                    <input type="file" id="ThumbNail" name="ThumbNail" value="@Model.ThumbNailLink" /><br>
+                    <input type="file" id="ThumbNail" name="ThumbNail" value="@Model.ThumbNailLink" multiple /><br>
                     <span asp-validation-for="ThumbNail" class="text-danger"></span>
                     <input asp-for="ThumbNailLink" class="form-control" hidden="hidden" />
                     <img id="thumbnail" src="@Model.ThumbNailLink" alt="your image" style="max-height:200px;max-width:100%" />
@@ -107,6 +107,7 @@
 
 <script src="~/js/jquery-2.2.4.min.js"></script>
 <script src="~/js/ckeditor/ckeditor.js"></script>
+<script src="~/js/ckeditor/plugins/ckfinder/ckfinder.js"></script>
 <script>
     $(document).ready(function () {
         $("#ThumbNail").submit();
@@ -129,19 +130,26 @@
 
     });
 
+
     CKEDITOR.replace('Description', {
-        extraPlugins: 'easyimage',
-        extraPlugins: 'uploadwidget',
-        extraPlugins : 'notificationaggregator'
+        filebrowserBrowseUrl: 'https://localhost:44370/js/ckeditor/filemanager/browser/default/browser.html?Connector=https://localhost:44370/js/ckeditor/plugins/ckfinder/core/connector/aspx/connector.aspx',
+        filebrowserImageBrowseUrl: 'https://localhost:44370/js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=https://localhost:44370/js/ckeditor/plugins/ckfinder/core/connector/aspx/connector.aspx',
+        filebrowserFlashBrowseUrl: 'https://localhost:44370/js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=https://localhost:44370/js/ckeditor/plugins/ckfinder/core/connector/aspx/connector.aspx',
+        filebrowserUploadUrl: 'https://localhost:44370/js/ckeditor/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: 'https://localhost:44370/js/ckeditor/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserFlashUploadUrl: 'https://localhost:44370/js/ckeditor//plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files'
     });
 
     CKEDITOR.replace('Plan', {
-        extraPlugins: 'uploadimage',
-        extraPlugins: 'uploadwidget',
-        extraPlugins: 'notificationaggregator'
+        filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
     });
 
-   
+
 
     $("#Description").change(function () {
         CKEDITOR.instances['Description'].setData(html)
@@ -152,4 +160,7 @@
     });
 
 </script>
+
+
+
 

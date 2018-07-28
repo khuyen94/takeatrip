@@ -458,8 +458,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\img\upload\" />
+    <Folder Include="wwwroot\img\uploads\" />
     <Folder Include="wwwroot\img\tours\upload\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CKFinder">
+      <HintPath>wwwroot\js\ckeditor\plugins\ckfinder\bin\Debug\CKFinder.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

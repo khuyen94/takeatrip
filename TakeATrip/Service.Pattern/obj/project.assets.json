@@ -697,23 +697,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tranv\\.nuget\\packages\\": {},
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\takeatrip\\TakeATrip\\Service.Pattern\\Service.Pattern.csproj",
+      "projectUniqueName": "G:\\Freelancer\\takeatrip\\TakeATrip\\Service.Pattern\\Service.Pattern.csproj",
       "projectName": "Service.Pattern",
-      "projectPath": "E:\\takeatrip\\TakeATrip\\Service.Pattern\\Service.Pattern.csproj",
-      "packagesPath": "C:\\Users\\tranv\\.nuget\\packages\\",
-      "outputPath": "E:\\takeatrip\\TakeATrip\\Service.Pattern\\obj\\",
+      "projectPath": "G:\\Freelancer\\takeatrip\\TakeATrip\\Service.Pattern\\Service.Pattern.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "G:\\Freelancer\\takeatrip\\TakeATrip\\Service.Pattern\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\tranv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -726,8 +726,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "E:\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj": {
-              "projectPath": "E:\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj"
+            "G:\\Freelancer\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj": {
+              "projectPath": "G:\\Freelancer\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj"
             }
           }
         }

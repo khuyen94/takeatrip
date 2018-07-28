@@ -4,7 +4,7 @@
     <section class="hero_in tours_detail">
         <div class="wrapper">
             <div class="container">
-                <h1 class="fadeInUp"><span></span>Tour detail page</h1>
+                @*<h1 class="fadeInUp"><span></span>Tour detail page</h1>*@
             </div>
             <span class="magnific-gallery">
                 @*@foreach (var item in Model.Images)
@@ -43,8 +43,8 @@
                 <aside class="col-lg-4" id="sidebar">
                     <div class="box_detail booking">
                         <div class="price">
-                            <span>@Model.Price VNĐ <small>person</small></span>
-                            <div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
+                            <span>@Model.Price VNĐ </span>
+                            @*<div class="score"><span>Good<em>@Model. Reviews</em></span><strong>7.0</strong></div>*@
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="text" name="dates" placeholder="When..">

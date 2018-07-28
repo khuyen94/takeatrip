@@ -49,7 +49,7 @@ namespace TakeATrip.Web.Controllers
             return View(tourPageModel);
         }
 
-        public async Task<PartialViewResult> GetTourList(int pageIndex, int pageSize, string searchText, string location, string tourType)
+        public PartialViewResult GetTourList(int pageIndex, int pageSize, string searchText, string location, string tourType)
         {
             var query = new GetTourPageQuery
             {
@@ -61,8 +61,11 @@ namespace TakeATrip.Web.Controllers
             };
 
             var tourPage = _tourService.GetTourPage(query);
-
-            return PartialView("_TourPagePartial", GetPath(tourPage));
+            foreach (var item in tourPage.Items)
+            {
+                item.ThumbNail = GetPath(item.Id, item.ThumbNail);
+            }
+            return PartialView("_TourPagePartial", tourPage);
         }
 
         public PartialViewResult GetTourListByOrderBy(string orderBy)
@@ -71,7 +74,11 @@ namespace TakeATrip.Web.Controllers
             {
                 var tourPage = _tourService.GetTourPageByOrderBy(orderBy);
 
-                return PartialView("_TourPagePartial", GetPath(tourPage));
+                foreach(var item in tourPage.Items)
+                {
+                    item.ThumbNail = GetPath(item.Id, item.ThumbNail);
+                }
+                return PartialView("_TourPagePartial", tourPage);
             }
             return PartialView("_TourPagePartial");
         }
@@ -89,17 +96,14 @@ namespace TakeATrip.Web.Controllers
             return PartialView("_ReviewPagePartial", reviewModel);
         }
 
-        public TourPage GetPath(TourPage page)
+        public string GetPath(string id, string fileName)
         {
-            foreach (var item in page.Items)
-            {
-                item.ThumbNail = _configuration["ImgPath"] + "/" + item.Id + "/" + item.ThumbNail;
-            }
-            return page;
+
+            return _configuration["ImgPath"] + "/" + id + "/" + fileName;
         }
 
-        //[Authorize]
-        //[HttpGet]
+        [Authorize]
+        [HttpGet]
         public IActionResult Create()
         {
             var tourPageModel = new CreateTourViewModel
@@ -110,9 +114,9 @@ namespace TakeATrip.Web.Controllers
             return View(tourPageModel);
         }
 
-        //[Authorize]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateTourViewModel model)
         {
             model.TourTypeItem = _tourService.GetTourType();
@@ -122,12 +126,12 @@ namespace TakeATrip.Web.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 tourModel.CreatedBy = user.UserName;
                 var result = _tourService.CreateTour(tourModel);
-                switch (result)
+                switch (await result)
                 {
                     case 1:
                         return Redirect("/Tour/Index");
                     case -1:
-                        ModelState.AddModelError("ModelError", "Creat tour failed. Please contact to admin");
+                        ModelState.AddModelError("ModelError", "Cannot save your thumbnail. Please contact to admin");
                         return View(model);
                     case -2:
                         ModelState.AddModelError("ModelError", "Creat tour failed. Please recheck your image");
@@ -168,8 +172,11 @@ namespace TakeATrip.Web.Controllers
             };
 
             var tourPage = _tourService.GetTourPage(query);
-
-            return PartialView("_TourManagementPartial", GetPath(tourPage));
+            foreach (var item in tourPage.Items)
+            {
+                item.ThumbNail = GetPath(item.Id, item.ThumbNail);
+            }
+            return PartialView("_TourManagementPartial", tourPage);
         }
 
         [Authorize]
@@ -179,13 +186,14 @@ namespace TakeATrip.Web.Controllers
             var tourdetail = _tourService.GetTourDetail(int.Parse(id));
 
             var updateTourViewModel = _mapper.Map<UpdateTourViewModel>(tourdetail);
-
+            updateTourViewModel.TourTypeItem = _tourService.GetTourType();
+            updateTourViewModel.ThumbNailLink = GetPath(updateTourViewModel.Id, updateTourViewModel.ThumbNailLink);
             return View(updateTourViewModel);
         }
 
-        //[Authorize]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(UpdateTourViewModel model)
         {
             model.TourTypeItem = _tourService.GetTourType();
@@ -195,21 +203,23 @@ namespace TakeATrip.Web.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 updateTourModel.UpdatedBy = user.UserName;
                 var result = _tourService.UpdateTour(updateTourModel);
-                switch (result)
+
+                switch (await result)
                 {
                     case 1:
                         return Redirect("/Tour/TourManagement");
                     case -1:
-                        ModelState.AddModelError("ModelError", "Creat tour failed. Please contact to admin");
+                        ModelState.AddModelError("ModelError", "Cannot save your thumbnail. Please contact to admin");
                         return View(model);
                     case -2:
-                        ModelState.AddModelError("ModelError", "Creat tour failed. Please recheck your image");
+                        ModelState.AddModelError("ModelError", "Create tour failed. Please recheck your image");
                         return View(model);
                     default:
                         return Redirect("/Tour/Index");
                 }
 
             }
+
             ModelState.AddModelError("ModelError", "Please recheck your data");
             return View(model);
         }

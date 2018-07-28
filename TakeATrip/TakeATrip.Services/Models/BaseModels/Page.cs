@@ -22,6 +22,16 @@ namespace TakeATrip.Services.Models.BaseModels
         public int TotalCount { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the item's property used to sort items.
+        /// </summary>
+        public string OrderBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the order of items is ascending.
+        /// </summary>
+        public bool IsOrderAscending { get; set; }
+
+        /// <summary>
         /// Gets or sets the text used to filter the query result.
         /// </summary>
         public string SearchText { get; set; }

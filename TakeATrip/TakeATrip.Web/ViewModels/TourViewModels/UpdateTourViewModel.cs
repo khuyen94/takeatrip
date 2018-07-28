@@ -12,7 +12,7 @@ namespace TakeATrip.Web.ViewModels.TourViewModels
     {
         public string Id { get; set; }
         [Required]
-        [StringLength(250, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 20)]
+        [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 20)]
         [DataType(DataType.Text)]
         [Display(Name = "Tour Name")]
         public string TourName { get; set; }
@@ -71,5 +71,7 @@ namespace TakeATrip.Web.ViewModels.TourViewModels
 
         [Display(Name = "Thumb Nail")]
         public IFormFile ThumbNail { get; set; }
+
+        public string ThumbNailLink { get; set; }
     }
 }
