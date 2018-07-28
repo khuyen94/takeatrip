@@ -1,2 +1,3 @@
 
 TakeATrip/.dockerignore
+TakeATrip/Repository.Pattern.EfCore/bin
