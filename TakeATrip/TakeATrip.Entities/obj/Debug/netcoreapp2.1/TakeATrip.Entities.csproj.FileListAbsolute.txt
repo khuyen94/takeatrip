@@ -30,3 +30,14 @@ E:\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Enti
 E:\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.AssemblyInfo.cs
 E:\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.dll
 E:\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.pdb
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\bin\Debug\netcoreapp2.1\TakeATrip.Entities.deps.json
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\bin\Debug\netcoreapp2.1\TakeATrip.Entities.runtimeconfig.json
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\bin\Debug\netcoreapp2.1\TakeATrip.Entities.runtimeconfig.dev.json
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\bin\Debug\netcoreapp2.1\TakeATrip.Entities.dll
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\bin\Debug\netcoreapp2.1\TakeATrip.Entities.pdb
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.csprojAssemblyReference.cache
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.csproj.CoreCompileInputs.cache
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.AssemblyInfoInputs.cache
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.AssemblyInfo.cs
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.dll
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\TakeATrip.Entities\obj\Debug\netcoreapp2.1\TakeATrip.Entities.pdb

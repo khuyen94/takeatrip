@@ -23,3 +23,11 @@ E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Patte
 E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.AssemblyInfo.cs
 E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.dll
 E:\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.pdb
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\Repositoy.Pattern\bin\Debug\netcoreapp2.1\Repositoy.Pattern.deps.json
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\Repositoy.Pattern\bin\Debug\netcoreapp2.1\Repositoy.Pattern.dll
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\Repositoy.Pattern\bin\Debug\netcoreapp2.1\Repositoy.Pattern.pdb
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.csproj.CoreCompileInputs.cache
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.AssemblyInfoInputs.cache
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.AssemblyInfo.cs
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.dll
+G:\Freelancer\takeatrip\takeatrip\TakeATrip\Repositoy.Pattern\obj\Debug\netcoreapp2.1\Repositoy.Pattern.pdb

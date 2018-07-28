@@ -8176,7 +8176,7 @@
       ]
     },
     "Microsoft.Extensions.PlatformAbstractions/1.1.0": {
-      "sha512": "UMlN++q5qqzQ2HH+uOrKxN5fmBXMQDhrYkSaPJxhmyzfJaFPirrVr1raim/Ocq1psAZoB9+7JSAf0GDAX35wUg==",
+      "sha512": "H6ZsQzxYw/6k2DfEQRXdC+vQ6obd6Uba3uGJrnJ2vG4PRXjQZ7seB13JdCfE72abp8E6Fk3gGgDzfJiLZi5ZpQ==",
       "type": "package",
       "path": "microsoft.extensions.platformabstractions/1.1.0",
       "files": [
@@ -14641,23 +14641,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tranv\\.nuget\\packages\\": {},
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\takeatrip\\TakeATrip\\TakeATrip.Web\\TakeATrip.Web.csproj",
+      "projectUniqueName": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Web\\TakeATrip.Web.csproj",
       "projectName": "TakeATrip.Web",
-      "projectPath": "E:\\takeatrip\\TakeATrip\\TakeATrip.Web\\TakeATrip.Web.csproj",
-      "packagesPath": "C:\\Users\\tranv\\.nuget\\packages\\",
-      "outputPath": "E:\\takeatrip\\TakeATrip\\TakeATrip.Web\\obj\\",
+      "projectPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Web\\TakeATrip.Web.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\tranv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -14670,17 +14670,17 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "E:\\takeatrip\\TakeATrip\\Repository.Pattern.EfCore\\Repository.Pattern.EfCore.csproj": {
-              "projectPath": "E:\\takeatrip\\TakeATrip\\Repository.Pattern.EfCore\\Repository.Pattern.EfCore.csproj"
+            "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\Repository.Pattern.EfCore\\Repository.Pattern.EfCore.csproj": {
+              "projectPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\Repository.Pattern.EfCore\\Repository.Pattern.EfCore.csproj"
             },
-            "E:\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj": {
-              "projectPath": "E:\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj"
+            "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj": {
+              "projectPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj"
             },
-            "E:\\takeatrip\\TakeATrip\\TakeATrip.Entities\\TakeATrip.Entities.csproj": {
-              "projectPath": "E:\\takeatrip\\TakeATrip\\TakeATrip.Entities\\TakeATrip.Entities.csproj"
+            "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Entities\\TakeATrip.Entities.csproj": {
+              "projectPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Entities\\TakeATrip.Entities.csproj"
             },
-            "E:\\takeatrip\\TakeATrip\\TakeATrip.Services\\TakeATrip.Services.csproj": {
-              "projectPath": "E:\\takeatrip\\TakeATrip\\TakeATrip.Services\\TakeATrip.Services.csproj"
+            "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Services\\TakeATrip.Services.csproj": {
+              "projectPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Services\\TakeATrip.Services.csproj"
             }
           }
         }

@@ -7023,23 +7023,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tranv\\.nuget\\packages\\": {},
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\takeatrip\\TakeATrip\\TakeATrip.Entities\\TakeATrip.Entities.csproj",
+      "projectUniqueName": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Entities\\TakeATrip.Entities.csproj",
       "projectName": "TakeATrip.Entities",
-      "projectPath": "E:\\takeatrip\\TakeATrip\\TakeATrip.Entities\\TakeATrip.Entities.csproj",
-      "packagesPath": "C:\\Users\\tranv\\.nuget\\packages\\",
-      "outputPath": "E:\\takeatrip\\TakeATrip\\TakeATrip.Entities\\obj\\",
+      "projectPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Entities\\TakeATrip.Entities.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\TakeATrip.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\tranv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
