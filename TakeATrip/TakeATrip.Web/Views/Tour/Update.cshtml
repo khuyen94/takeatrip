@@ -1,0 +1,155 @@
+﻿@model TakeATrip.Web.ViewModels.TourViewModels.UpdateTourViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<link href="~/css/tinymce.css" rel="stylesheet" />
+<main>
+    <section class="hero_in tours">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>Create your tour</h1>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <form asp-controller="Tour" asp-action="Update" method="post" class="form-horizontal" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input asp-for="Id" class="form-control" hidden="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div><br />
+            @Html.ValidationMessage("ModelError", new { @class = "text-danger" })
+            <div class="form-group row">
+                <div class="form-group col-sm-6">
+                    <label asp-for="TourName"></label>
+                    <input asp-for="TourName" class="form-control" />
+                    <span asp-validation-for="TourName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="Location"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-sm-6">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" type="number" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="TourType"></label>
+                    @Html.DropDownListFor(model => model.TourType, new SelectList(Model.TourTypeItem, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                    <span asp-validation-for="TourType" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-sm-6">
+                    <label asp-for="DurationUnit"></label><br>
+                    <select asp-for="DurationUnit" class="form-control">
+                        <option>Please select one</option>
+                        <option value="Hours">Hours</option>
+                        <option value="Days">Days</option>
+                    </select>
+                    <span asp-validation-for="DurationUnit" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="Duration"></label>
+                    <input asp-for="Duration" class="form-control" />
+                    <span asp-validation-for="Duration" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-md-12">
+                    <label asp-for="ThumbNail"></label>
+                    <input type="file" id="ThumbNail" name="ThumbNail" value="@Model.ThumbNailLink" multiple /><br>
+                    <span asp-validation-for="ThumbNail" class="text-danger"></span>
+                    <input asp-for="ThumbNailLink" class="form-control" hidden="hidden" />
+                    <img id="thumbnail" src="@Model.ThumbNailLink" alt="your image" style="max-height:140px;max-width:240px" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-md-12">
+                    <label asp-for="ShortDescription"></label>
+                    <textarea asp-for="ShortDescription" class="form-control"></textarea>
+                    <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-md-12">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" id="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-md-12">
+                    <label asp-for="Plan"></label>
+                    <textarea asp-for="Plan" id="Plan" class="form-control"></textarea>
+                    <span asp-validation-for="Plan" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-md-12">
+                    <label asp-for="Included"></label>
+                    <textarea asp-for="Included" class="form-control"></textarea>
+                    <span asp-validation-for="Included" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-md-12">
+                    <label asp-for="Excluded"></label>
+                    <textarea asp-for="Excluded" class="form-control"></textarea>
+                    <span asp-validation-for="Excluded" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn_1 full-width">Update</button>
+        </form>
+    </div>
+</main>
+
+<script src="~/js/jquery-2.2.4.min.js"></script>
+<script src="~/js/tinymce/js/tinymce/tinymce.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#ThumbNail").submit();
+    });
+    function readURL(input, id) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#" + id + "").attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#ThumbNail").change(function () {
+        readURL(this, "thumbnail");
+
+    });
+
+
+    tinymce.init({
+        selector: "textarea",
+        plugins: 'advlist autolink link image lists charmap print preview visualblocks',
+        toolbar: "link | image",
+        visualblocks_default_state: true,
+        images_upload_url: '/TinyMce/UploadFile',
+        automatic_uploads: false,
+        images_reuse_filename: true,
+        images_upload_base_path: '/img/tours/uploads/',
+        image_dimensions: true,
+        image_class_list: [
+            { title: 'Responsive', value: 'img-responsive' }
+        ]
+        //content_css: "/css/tinymce.css"
+    });
+
+</script>
+
+
+
+

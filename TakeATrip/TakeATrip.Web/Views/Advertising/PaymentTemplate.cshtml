@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewData["Title"] = "PaymentTemplate";
+}
+<style>
+    div {
+        position: relative;
+        overflow: hidden;
+    }
+
+    input {
+        position: absolute;
+        font-size: 50px;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+</style>
+
+
+<main>
+    <section class="hero_in tours">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>Create your tour</h1>
+            </div>
+        </div>
+    </section>
+    <br />
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Thông tin thanh toán</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Số tiền nạp:</td>
+                    <td>100000</td>
+                </tr>
+                <tr>
+                    <td>Nội dung chuyển khoản:</td>
+                    <td>D123987</td>
+                </tr>
+                <tr>
+                    <td>Tên tài khoản:</td>
+                    <td>TakeATrip</td>
+                </tr>
+                <tr>
+                    <td>Chi nhánh:</td>
+                    <td>Hồ Chí Minh</td>
+                </tr>
+                <tr>
+                    <td>Tên ngân hàng:</td>
+                    <td>Vietcombank</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Bằng chứng thanh toán của bạn</th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <div class="btn btn-success">
+                            Bằng chứng thanh toán của bạn
+                            <input type="file" name="file" id="ThumbNail" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="thumbnail" src="~/img/thumb_map_single_hotel.jpg" class="img-fluid" style="max-height:100%;max-width:100%">
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script src="~/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
+    function readURL(input, id) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#" + id + "").attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#ThumbNail").change(function () {
+        readURL(this, "thumbnail");
+    });
+</script>

@@ -14,6 +14,7 @@ namespace TakeATrip.Services.Models.ReviewModels
     public class Review
     {
         public string UserName { get; set; }
+        public string Avatar { get; set; }
         public int Rates { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Comment { get; set; }

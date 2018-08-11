@@ -1,0 +1,60 @@
+﻿@model dynamic
+
+@{
+    var maximumVisibleButtons = 7;
+    var maxPageNumberButtons = maximumVisibleButtons - 2;
+    var midPoint = maxPageNumberButtons / 2;
+    var pageNumber = Model.PageIndex + 1;
+    var pageSize = Model.PageSize;
+    var totalCount = Model.TotalCount;
+    int totalPageCount = pageSize != 0 ? (totalCount / pageSize) + (totalCount % pageSize == 0 ? 0 : 1) : 1;
+    var startPageIndex = pageNumber > midPoint ? pageNumber - midPoint : 1;
+    var endPageIndex = pageNumber + midPoint;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="pagination pagination-sm pull-right" data-number-page="@totalPageCount">
+            <li><a href="#" class="first-page" aria-label="Fist">First</a></li>
+            <li><a href="#" class="previous-page" aria-label="Previous">Previous</a></li>
+            @if (startPageIndex > 1)
+            {
+                <li><a href="#" class="page-index" data-index="@(startPageIndex -2)">...</a></li>
+            }
+
+            @for (int i = startPageIndex; i <= endPageIndex; i++)
+            {
+                if (i <= totalPageCount)
+                {
+                    var className = i == pageNumber ? "active" : string.Empty;
+                    <li class="@className"><a href="#" class="page-index" data-index="@(i - 1)">@i</a></li>
+                }
+            }
+
+            @if (endPageIndex < totalPageCount)
+            {
+                <li><a href="#" class="page-index" data-index="@endPageIndex">...</a></li>
+            }
+            <li><a href="#" class="next-page" aria-label="Next">Next</a></li>
+            <li><a href="#" class="last-page" aria-label="Last">Last</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .pagination {
+        display: inline-block;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd; /* Gray */
+        }
+    ul li {
+        display: inline;
+    }
+
+</style>

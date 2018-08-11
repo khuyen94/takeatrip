@@ -20,6 +20,7 @@ namespace TakeATrip.Services.Core
         private readonly IRepositoryAsync<Reviews> _repository;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+
         public ReviewService(IRepositoryAsync<Reviews> repository, IUnitOfWorkAsync unitOfWorkAsync) : base(repository)
         {
             _repository = repository;
@@ -40,13 +41,14 @@ namespace TakeATrip.Services.Core
 
         private int GetTotalReview(int id)
         {
-            return _repository.GetBaseQuery()
+            return _repository.Queryable()
                 .Where(m => m.TourId == id)
                 .Count();
         }
+
         private float GetRateAvg(int id)
         {
-            var rateList = _repository.GetBaseQuery()
+            var rateList = _repository.Queryable()
                 .Where(m => m.TourId == id)
                 .ToList();
 
@@ -56,6 +58,7 @@ namespace TakeATrip.Services.Core
 
             return rate > 0 ? rate / count : rate;
         }
+
         private Rate[] GetListRate(int id)
         {
             int total = GetTotalReview(id);
@@ -76,9 +79,10 @@ namespace TakeATrip.Services.Core
                 Percent = (m.TotalRate / (float)total) * 100
             }).ToArray();
         }
+
         private Review[] GetListReview(int id)
         {
-            return _repository.GetBaseQuery()
+            return _repository.Queryable()
                 .Where(m => m.TourId == id).Select(m => new Review
                 {
                     UserName = m.Username,

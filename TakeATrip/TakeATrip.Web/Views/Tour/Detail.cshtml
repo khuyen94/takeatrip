@@ -1,19 +1,23 @@
 ﻿@model TakeATrip.Web.ViewModels.TourViewModels.TourDetailViewModel
 
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
 <main>
     <section class="hero_in tours_detail">
         <div class="wrapper">
             <div class="container">
-                <h1 class="fadeInUp"><span></span>Tour detail page</h1>
+
             </div>
             <span class="magnific-gallery">
                 @*@foreach (var item in Model.Images)
                     {
                         <a href="@item.ImgUrl" class="btn_photos" title="@Model.TourName" data-effect="mfp-zoom-in">View photos</a>
                     }*@
-                <a href="img/gallery/tour_list_1.jpg" class="btn_photos" title="Photo title" data-effect="mfp-zoom-in">View photos</a>
-                <a href="img/gallery/tour_list_2.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
-                <a href="img/gallery/tour_list_3.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+                <a href="@Model.BannerUrl" class="btn_photos" title="Photo title" data-effect="mfp-zoom-in">View photos</a>
             </span>
         </div>
     </section>
@@ -35,17 +39,58 @@
                         <input asp-for="Id" class="form-control" type="text" hidden="hidden">
                         <h2>@Model.TourName</h2>
                         <p>@Html.Raw(Model.Description)</p>
+                        <p>@Html.Raw(Model.Plan)</p>
                     </section>
                     <div id="review_section"></div>
+
                 </div>
+                <aside class="col-lg-4" id="sidebar">
+                    <div class="box_detail booking">
+                        <div class="price">
+                            <span>@Model.Price VNĐ </span>
+                            @*<div class="score"><span>Good<em>@Model. Reviews</em></span><strong>7.0</strong></div>*@
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="dates" placeholder="When..">
+                            <i class="icon_calendar"></i>
+                        </div>
+                        <div class="panel-dropdown">
+                            <a href="#">Guests <span class="qtyTotal">1</span></a>
+                            <div class="panel-dropdown-content right">
+                                <div class="qtyButtons">
+                                    <label>Adults</label>
+                                    <input type="text" name="qtyInput" value="1">
+                                </div>
+                                <div class="qtyButtons">
+                                    <label>Childrens</label>
+                                    <input type="text" name="qtyInput" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="cart-1.html" class="btn_1 full-width purchase">Purchase</a>
+                        <a href="wishlist.html" class="btn_1 full-width outline wishlist"><i class="icon_heart"></i> Add to wishlist</a>
+                        <div class="text-center"><small>No money charged in this step</small></div>
+                    </div>
+                    <ul class="share-buttons">
+                        <li><a class="fb-share" href="#0"><i class="social_facebook"></i> Share</a></li>
+                        <li><a class="twitter-share" href="#0"><i class="social_twitter"></i> Tweet</a></li>
+                        <li><a class="gplus-share" href="#0"><i class="social_googleplus"></i> Share</a></li>
+                    </ul>
+                </aside>
                 <!-- /row -->
             </div>
             <!-- /container -->
+            <hr>
+            <h3>Location</h3>
+            <div id="google-map" class="wow fadeIn" data-latitude="10.792277" data-longitude="106.698249" data-wow-duration="1000ms" data-wow-delay="400ms"></div>
         </div>
         <!-- /bg_color_1 -->
+    </div>
 </main>
 <!--/main-->
 <script src="~/js/jquery-2.2.4.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="~/js/tinymce/js/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
     $(function () {
             loadTourReview();
@@ -64,5 +109,7 @@
                     $("#" + containerId).html(data);
                 }
             });
-        }
+    }
+
+  
 </script>

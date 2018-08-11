@@ -7,18 +7,14 @@ namespace TakeATrip.Web.ViewModels.TourViewModels
 {
     public class TourDetailViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string TourName { get; set; }
         public int Views { get; set; }
         public string Locations { get; set; }
         public string Description { get; set; }
         public string Price { get; set; }
-        public string TourType { get; set; }
-        public TourImage[] Images { get; set; }
-    }
-
-    public class TourImage
-    {
-        public string ImgUrl { get; set; }
+        public int TourType { get; set; }
+        public string Plan { get; set; }
+        public string BannerUrl { get; set; }
     }
 }

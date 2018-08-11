@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TakeATrip</title>
 
@@ -39,9 +39,9 @@
         <header class="header menu_fixed">
             <div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
             <div id="logo">
-                <a asp-action="Index">
-                    <img src="~/img/logo.png" width="150" height="36" data-retina="true" alt="" class="logo_normal">
-                    <img src="~/img/logo_sticky.png" width="150" height="36" data-retina="true" alt="" class="logo_sticky">
+                <a asp-controller="Home" asp-action="Index">
+                    <img src="~/img/logo.png" width="150" height="84" data-retina="true" alt="" class="logo_normal">
+                    <img src="~/img/logo_sticky.png" width="150" height="84" data-retina="true" alt="" class="logo_sticky">
                 </a>
             </div>
             <ul id="top_menu">
@@ -71,18 +71,7 @@
                         </ul>
                     </li>
                     <li>
-                        <span><a href="#0">Tours</a></span>
-                        <ul>
-                            <li><a href="tours-grid-isotope.html">Tours grid isotope</a></li>
-                            <li><a href="tours-grid-sidebar.html">Tours grid sidebar</a></li>
-                            <li><a href="tours-grid-sidebar-2.html">Tours grid sidebar 2</a></li>
-                            <li><a href="tours-grid.html">Tours grid simple</a></li>
-                            <li><a href="tours-list-isotope.html">Tours list isotope</a></li>
-                            <li><a href="tours-list-sidebar.html">Tours list sidebar</a></li>
-                            <li><a href="tours-list-sidebar-2.html">Tours list sidebar 2</a></li>
-                            <li><a href="tours-list.html">Tours list simple</a></li>
-                            <li><a href="tour-detail.html">Tour detail</a></li>
-                        </ul>
+                        <span><a asp-controller="Tour" asp-action="Index">Tour</a></span>
                     </li>
                     <li>
                         <span><a href="#0">Hotels</a></span>
@@ -154,7 +143,7 @@
         <div class="container margin_60_35">
             <div class="row">
                 <div class="col-lg-5 col-md-12 p-r-5">
-                    <p><img src="~/img/logo.png" width="150" height="36" data-retina="true" alt=""></p>
+                    <p><img src="~/img/logo.png" width="150" height="84" data-retina="true" alt=""></p>
                     <p>Mea nibh meis philosophia eu. Duis legimus efficiantur ea sea. Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu. Nihil facilisi indoctum an vix, ut delectus expetendis vis.</p>
                     <div class="follow_us">
                         <ul>

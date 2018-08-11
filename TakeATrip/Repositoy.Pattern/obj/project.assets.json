@@ -687,11 +687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj",
+      "projectUniqueName": "G:\\Freelancer\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj",
       "projectName": "Repositoy.Pattern",
-      "projectPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj",
+      "projectPath": "G:\\Freelancer\\takeatrip\\TakeATrip\\Repositoy.Pattern\\Repositoy.Pattern.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "G:\\Freelancer\\takeatrip\\takeatrip\\TakeATrip\\Repositoy.Pattern\\obj\\",
+      "outputPath": "G:\\Freelancer\\takeatrip\\TakeATrip\\Repositoy.Pattern\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

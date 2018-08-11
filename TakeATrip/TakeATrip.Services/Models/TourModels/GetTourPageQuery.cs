@@ -9,5 +9,6 @@ namespace TakeATrip.Services.Models.TourModels
     {
         public string Location { get; set; }
         public string TourType { get; set; }
+        public string CreatedBy { get; set; }
     }
 }
