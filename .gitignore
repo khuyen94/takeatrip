@@ -16,3 +16,5 @@
 /TakeATrip/TakeATrip.Services/obj/Debug/netcoreapp2.1/TakeATrip.Services.AssemblyInfo.cs
 /TakeATrip/TakeATrip.Services/obj/Release/netcoreapp2.1/TakeATrip.Services.AssemblyInfo.cs
 /TakeATrip/TakeATrip.Web/bin/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Web/obj/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Web/wwwroot/img
