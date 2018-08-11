@@ -85,7 +85,7 @@ namespace TakeATrip.Web.Controllers
 
         public IActionResult Detail(string id)
         {
-            var tourdetail = _tourService.GetTourDetail(int.Parse(id));
+            var tourdetail = _tourService.GetTourDetail(int.Parse(id),null);
             var tourDetailViewModel = _mapper.Map<TourDetailViewModel>(tourdetail);
             return View(tourDetailViewModel);
         }
@@ -129,7 +129,7 @@ namespace TakeATrip.Web.Controllers
                 switch (await result)
                 {
                     case 1:
-                        return Redirect("/Tour/Index");
+                        return Redirect("/Tour");
                     case -1:
                         ModelState.AddModelError("ModelError", "Cannot save your thumbnail. Please contact to admin");
                         return View(model);
@@ -181,9 +181,15 @@ namespace TakeATrip.Web.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult Update(string id)
+        public async Task<IActionResult> Update(string id)
         {
-            var tourdetail = _tourService.GetTourDetail(int.Parse(id));
+            var user = await _userManager.GetUserAsync(User);
+            var tourdetail = _tourService.GetTourDetail(int.Parse(id), user.Email);
+
+            if(tourdetail == null)
+            {
+                return Redirect("/Tour");
+            }
 
             var updateTourViewModel = _mapper.Map<UpdateTourViewModel>(tourdetail);
             updateTourViewModel.TourTypeItem = _tourService.GetTourType();

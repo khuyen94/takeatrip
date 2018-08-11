@@ -15,5 +15,6 @@ namespace TakeATrip.Web.ViewModels.TourViewModels
         public string Price { get; set; }
         public int TourType { get; set; }
         public string Plan { get; set; }
+        public string BannerUrl { get; set; }
     }
 }

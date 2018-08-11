@@ -5,6 +5,17 @@
     <UserSecretsId>aspnet-TakeATrip.Web-070B53EB-9EB2-4FC6-AA25-D66677052234</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="wwwroot\img\tours\upload\**" />
+    <Compile Remove="wwwroot\img\uploads\**" />
+    <Content Remove="wwwroot\img\tours\upload\**" />
+    <Content Remove="wwwroot\img\uploads\**" />
+    <EmbeddedResource Remove="wwwroot\img\tours\upload\**" />
+    <EmbeddedResource Remove="wwwroot\img\uploads\**" />
+    <None Remove="wwwroot\img\tours\upload\**" />
+    <None Remove="wwwroot\img\uploads\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
@@ -455,11 +466,6 @@
     <ProjectReference Include="..\Repositoy.Pattern\Repositoy.Pattern.csproj" />
     <ProjectReference Include="..\TakeATrip.Entities\TakeATrip.Entities.csproj" />
     <ProjectReference Include="..\TakeATrip.Services\TakeATrip.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\uploads\" />
-    <Folder Include="wwwroot\img\tours\upload\" />
   </ItemGroup>
 
   <ItemGroup>

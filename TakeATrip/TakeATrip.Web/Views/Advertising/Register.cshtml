@@ -1,0 +1,218 @@
+﻿@model TakeATrip.Web.ViewModels.AdvertisingViewModels.RegisterAdvertViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<link href="~/css/advpricingplan.css" rel="stylesheet" />
+<main>
+    <section class="hero_in tours">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>Create your tour</h1>
+            </div>
+        </div>
+    </section>
+    <br />
+    <div class="container" id="register">
+        <div class="container">
+            <form asp-controller="Advertising" asp-action="Register" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div><br />
+                @Html.ValidationMessage("ModelError", new { @class = "text-danger" })
+                <div class="form-group row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Tour"></label>
+                        @Html.DropDownListFor(model => model.Tour, new SelectList(Model.TourItem, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                        <span asp-validation-for="Tour" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="StartDate"></label><br>
+                        <input asp-for="StartDate" class="form-control" data-date-format="dd-mm-yyyy" autocomplete="off">
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-6 col-sm-3" id="package0">
+                        <div class="pricingTable package0">
+                            <div class="pricingTable-header">
+                                <svg x="0px" y="0px" viewBox="0 0 260 180">
+                                    <path fill="#34454d" stroke-dasharray="5,5" stroke="#fff" d="M0,180.928c0,0,0-108.489,0-143.333C1.637,23.582,8.907,0,42.088,0C75.271,0,260,0,260,0v72.841
+                            c0,0-2.667,37.424-43.877,45.563C177.693,125.992,6.26,130.42,0,180.928z"></path>
+                                    <text transform="matrix(1.0078 0 0 1 75.9497 33.8887)" fill="#fff" font-size="23.726">STANDARD</text>
+                                    <g>
+                                        <text transform="matrix(1.0078 0 0 1 98.5996 65.9434)" fill="#fff" font-size="23.726">$</text>
+                                        <text transform="matrix(1.076 0 0 1 112.0176 88.458)" fill="#fff" font-size="58.1472" font-weight="600">10</text>
+                                        <text transform="matrix(1.0078 0 0 1 107.9326 106.832)" fill="#fff" font-size="16.2415">/month</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <ul class="pricing-content">
+                                <li>50GB Disk Space</li>
+                                <li>50 Email Accounts</li>
+                                <li>50GB Bandwidth</li>
+                                <li class="disable">10 Subdomains</li>
+                                <li class="disable">15 Domains</li>
+                            </ul>
+                            <div class="pricingTable-signup">
+                                <svg x="0" y="0" viewBox="-35 0 160 30">
+                                    <a href="javascript:Register(0)">
+                                        <path fill="#fff" d="M13.12,5.867c17.786-0.834,68.654-5.473,68.654-5.473s8.203-1.945,7.445,5.473
+                                c-0.757,7.417-4.037,16.782-4.037,16.782s-1.667,5.881-9.719,6.932c-8.961,0.852-50.858-0.983-67.771,0
+                                c-2.718,0.158-9.935,0.256-7.446-7.66c2.736-9.18,3.408-10.459,3.408-10.459S5.647,5.86,13.12,5.867z"></path>
+                                        <text transform="matrix(1 0 0 1 15.5055 21.0098)" fill="#34454D" font-size="10" font-weight="600">SUBSCRIBE</text>
+                                    </a>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3" id="package1">
+                        <div class="pricingTable package1">
+                            <div class="pricingTable-header">
+                                <svg x="0px" y="0px" viewBox="0 0 260 180">
+                                    <path fill="#34454d" stroke-dasharray="5,5" stroke="#fff" d="M0,180.928c0,0,0-108.489,0-143.333C1.637,23.582,8.907,0,42.088,0C75.271,0,260,0,260,0v72.841
+                            c0,0-2.667,37.424-43.877,45.563C177.693,125.992,6.26,130.42,0,180.928z"></path>
+                                    <text transform="matrix(1.0078 0 0 1 75.9497 33.8887)" fill="#fff" font-size="23.726">ADVANCE</text>
+                                    <g>
+                                        <text transform="matrix(1.0078 0 0 1 98.5996 65.9434)" fill="#fff" font-size="23.726">$</text>
+                                        <text transform="matrix(1.076 0 0 1 112.0176 88.458)" fill="#fff" font-size="58.1472" font-weight="600">10</text>
+                                        <text transform="matrix(1.0078 0 0 1 107.9326 106.832)" fill="#fff" font-size="16.2415">/month</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <ul class="pricing-content">
+                                <li>50GB Disk Space</li>
+                                <li>50 Email Accounts</li>
+                                <li>50GB Bandwidth</li>
+                                <li class="disable">10 Subdomains</li>
+                                <li class="disable">15 Domains</li>
+                            </ul>
+                            <div class="pricingTable-signup">
+                                <svg x="0" y="0" viewBox="-35 0 160 30">
+                                    <a href="javascript:Register(1)">
+                                        <path fill="#fff" d="M13.12,5.867c17.786-0.834,68.654-5.473,68.654-5.473s8.203-1.945,7.445,5.473
+                                c-0.757,7.417-4.037,16.782-4.037,16.782s-1.667,5.881-9.719,6.932c-8.961,0.852-50.858-0.983-67.771,0
+                                c-2.718,0.158-9.935,0.256-7.446-7.66c2.736-9.18,3.408-10.459,3.408-10.459S5.647,5.86,13.12,5.867z"></path>
+                                        <text transform="matrix(1 0 0 1 15.5055 21.0098)" fill="#34454D" font-size="10" font-weight="600">SUBSCRIBE</text>
+                                    </a>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3" id="package2">
+                        <div class="pricingTable package2">
+                            <div class="pricingTable-header">
+                                <svg x="0px" y="0px" viewBox="0 0 260 180">
+                                    <path fill="#34454d" stroke-dasharray="5,5" stroke="#fff" d="M0,180.928c0,0,0-108.489,0-143.333C1.637,23.582,8.907,0,42.088,0C75.271,0,260,0,260,0v72.841
+                            c0,0-2.667,37.424-43.877,45.563C177.693,125.992,6.26,130.42,0,180.928z"></path>
+                                    <text transform="matrix(1.0078 0 0 1 75.9497 33.8887)" fill="#fff" font-size="23.726">BUSINESS</text>
+                                    <g>
+                                        <text transform="matrix(1.0078 0 0 1 98.5996 65.9434)" fill="#fff" font-size="23.726">$</text>
+                                        <text transform="matrix(1.076 0 0 1 112.0176 88.458)" fill="#fff" font-size="58.1472" font-weight="600">10</text>
+                                        <text transform="matrix(1.0078 0 0 1 107.9326 106.832)" fill="#fff" font-size="16.2415">/month</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <ul class="pricing-content">
+                                <li>50GB Disk Space</li>
+                                <li>50 Email Accounts</li>
+                                <li>50GB Bandwidth</li>
+                                <li class="disable">10 Subdomains</li>
+                                <li class="disable">15 Domains</li>
+                            </ul>
+                            <div class="pricingTable-signup">
+                                <svg x="0" y="0" viewBox="-35 0 160 30">
+                                    <a href="javascript:Register(2)">
+                                        <path fill="#fff" d="M13.12,5.867c17.786-0.834,68.654-5.473,68.654-5.473s8.203-1.945,7.445,5.473
+                                c-0.757,7.417-4.037,16.782-4.037,16.782s-1.667,5.881-9.719,6.932c-8.961,0.852-50.858-0.983-67.771,0
+                                c-2.718,0.158-9.935,0.256-7.446-7.66c2.736-9.18,3.408-10.459,3.408-10.459S5.647,5.86,13.12,5.867z"></path>
+                                        <text transform="matrix(1 0 0 1 15.5055 21.0098)" fill="#34454D" font-size="10" font-weight="600">SUBSCRIBE</text>
+                                    </a>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3" id="package3">
+                        <div class="pricingTable package3">
+                            <div class="pricingTable-header">
+                                <svg x="0px" y="0px" viewBox="0 0 260 180">
+                                    <path fill="#34454d" stroke-dasharray="5,5" stroke="#fff" d="M0,180.928c0,0,0-108.489,0-143.333C1.637,23.582,8.907,0,42.088,0C75.271,0,260,0,260,0v72.841
+                            c0,0-2.667,37.424-43.877,45.563C177.693,125.992,6.26,130.42,0,180.928z"></path>
+                                    <text transform="matrix(1.0078 0 0 1 75.9497 33.8887)" fill="#fff" font-size="23.726">PREMIUM</text>
+                                    <g>
+                                        <text transform="matrix(1.0078 0 0 1 98.5996 65.9434)" fill="#fff" font-size="23.726">$</text>
+                                        <text transform="matrix(1.076 0 0 1 112.0176 88.458)" fill="#fff" font-size="58.1472" font-weight="600">10</text>
+                                        <text transform="matrix(1.0078 0 0 1 107.9326 106.832)" fill="#fff" font-size="16.2415">/month</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <ul class="pricing-content">
+                                <li>50GB Disk Space</li>
+                                <li>50 Email Accounts</li>
+                                <li>50GB Bandwidth</li>
+                                <li class="disable">10 Subdomains</li>
+                                <li class="disable">15 Domains</li>
+                            </ul>
+                            <div class="pricingTable-signup">
+                                <svg x="0" y="0" viewBox="-35 0 160 30">
+                                    <a href="javascript:Register(3)">
+                                        <path fill="#fff" d="M13.12,5.867c17.786-0.834,68.654-5.473,68.654-5.473s8.203-1.945,7.445,5.473
+                                c-0.757,7.417-4.037,16.782-4.037,16.782s-1.667,5.881-9.719,6.932c-8.961,0.852-50.858-0.983-67.771,0
+                                c-2.718,0.158-9.935,0.256-7.446-7.66c2.736-9.18,3.408-10.459,3.408-10.459S5.647,5.86,13.12,5.867z"></path>
+                                        <text transform="matrix(1 0 0 1 15.5055 21.0098)" fill="#34454D" font-size="10" font-weight="600">SUBSCRIBE</text>
+                                    </a>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <input asp-for="Package" class="form-control" hidden="hidden">
+                    <span asp-validation-for="Package" class="text-danger"></span>
+                </div><br />
+                <div class="form-group row">
+                    <button type="submit" class="btn_1 full-width">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="~/js/jquery-2.2.4.min.js"></script>
+<script src="~/js/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $("#StartDate").datepicker({
+        todayHighlight: true,
+        startDate: new Date(),
+        autoclose: true,
+    }).datepicker();
+
+
+    function Register(type) {
+        $('#Package').val(type);
+        switch (type) {
+            case 0:
+                $('.package0').css({ "border": "3px solid #fa6fe6" });
+                $('.package1').css({ "border": "3px solid white" });
+                $('.package2').css({ "border": "3px solid white" });
+                $('.package3').css({ "border": "3px solid white" });
+                break;
+            case 1:
+                $('.package0').css({ "border": "3px solid white" });
+                $('.package1').css({ "border": "3px solid #fa6fe6" });
+                $('.package2').css({ "border": "3px solid white" });
+                $('.package3').css({ "border": "3px solid white" });
+                break;
+            case 2:
+                $(".package0").css("border", "3px solid white");
+                $(".package1").css("border", "3px solid white");
+                $(".package2").css("border", "3px solid #fa6fe6");
+                $(".package3").css("border", "3px solid white");
+                break;
+            case 3:
+                $(".package0").css("border", "3px solid white");
+                $(".package1").css("border", "3px solid white");
+                $(".package2").css("border", "3px solid white");
+                $(".package3").css("border", "3px solid #fa6fe6");
+                break;
+        }
+    }
+</script>

@@ -1,19 +1,23 @@
 ﻿@model TakeATrip.Web.ViewModels.TourViewModels.TourDetailViewModel
 
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
 <main>
     <section class="hero_in tours_detail">
         <div class="wrapper">
             <div class="container">
-                @*<h1 class="fadeInUp"><span></span>Tour detail page</h1>*@
+
             </div>
             <span class="magnific-gallery">
                 @*@foreach (var item in Model.Images)
                     {
                         <a href="@item.ImgUrl" class="btn_photos" title="@Model.TourName" data-effect="mfp-zoom-in">View photos</a>
                     }*@
-                <a href="img/gallery/tour_list_1.jpg" class="btn_photos" title="Photo title" data-effect="mfp-zoom-in">View photos</a>
-                <a href="img/gallery/tour_list_2.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
-                <a href="img/gallery/tour_list_3.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+                <a href="@Model.BannerUrl" class="btn_photos" title="Photo title" data-effect="mfp-zoom-in">View photos</a>
             </span>
         </div>
     </section>
@@ -86,6 +90,7 @@
 <!--/main-->
 <script src="~/js/jquery-2.2.4.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="~/js/tinymce/js/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
     $(function () {
             loadTourReview();
@@ -105,4 +110,6 @@
                 }
             });
     }
+
+  
 </script>

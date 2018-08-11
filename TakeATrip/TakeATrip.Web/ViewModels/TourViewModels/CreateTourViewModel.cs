@@ -13,7 +13,7 @@ namespace TakeATrip.Web.ViewModels.TourViewModels
         [Required]
         [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 10)]
         [DataType(DataType.Text)]
-        [Display(Name = "Tour Name")]
+        [Display(Name = "Tour Name",Prompt = "Name your awesome trip here!")]
         public string TourName { get; set; }
 
         [Required]
@@ -31,13 +31,13 @@ namespace TakeATrip.Web.ViewModels.TourViewModels
         [Required]
         [MinLength(100, ErrorMessage = "The {0} cannot be longer than 100 characters.")]
         [DataType(DataType.Text)]
-        [Display(Name = "Description")]
+        [Display(Name = "Description",Prompt = "Tell travelers how amazing your trip is!")]
         public string Description { get; set; }
 
         [Required]
         [MinLength(100, ErrorMessage = "The {0} cannot be longer than 100 characters.")]
         [DataType(DataType.Text)]
-        [Display(Name = "Plan")]
+        [Display(Name = "Plan",Prompt = "Where will you take your travelers first?")]
         public string Plan { get; set; }
 
         [Required]

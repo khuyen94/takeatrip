@@ -22,13 +22,15 @@ namespace TakeATrip.Services.Core
 
         TourPage GetTourPageByOrderBy(string orderBy);
 
-        TourDetailModel GetTourDetail(int id);
+        TourDetailModel GetTourDetail(int id,string email);
 
         SelectListItem[] GetTourType();
 
         Task<int> CreateTour(CreatTourModel model);
 
         Task<int> UpdateTour(UpdateTourModel model);
+
+        SelectListItem[] GetListTour(string createdBy);
     }
 
     public class TourService : Service<Tours>, ITourService
@@ -185,11 +187,20 @@ namespace TakeATrip.Services.Core
             }).ToArray();
         }
 
-        public TourDetailModel GetTourDetail(int id)
+        public TourDetailModel GetTourDetail(int id, string email)
         {
+            IQueryable<Tours> tourDetail;
             Increaseview(id);
-            return _repository.Queryable().Where(m => m.Id == id)
-                .Select(m => new TourDetailModel
+            if(email == null)
+            {
+                tourDetail = _repository.Queryable().Where(m => m.Id == id);
+            }
+            else
+            {
+                tourDetail = _repository.Queryable().Where(m => m.Id == id).Where(m => m.CreatedBy == email);
+            }
+
+            return tourDetail.Select(m => new TourDetailModel
                 {
                     Id = m.Id,
                     TourName = m.Name,
@@ -263,7 +274,9 @@ namespace TakeATrip.Services.Core
                 };
                 _repository.Insert(tour);
                 _unitOfWorkAsync.SaveChanges();
+
                 var isSuccess = _imagesServices.UploadImage(tour.Id, model.ThumbNail, model.CreatedBy);
+
                 if (await isSuccess > 0)
                 {
                     return 1;
@@ -321,6 +334,20 @@ namespace TakeATrip.Services.Core
             {
                 return -1;
             }
+        }
+
+        public SelectListItem[] GetListTour(string createdBy)
+        {
+            return _repository
+               .Queryable()
+               .Where(m=>m.CreatedBy == createdBy && m.Status == 2)
+               .OrderBy(m => m.Name)
+               .Select(m => new SelectListItem
+               {
+                   Text = m.Name,
+                   Value = m.Id.ToString()
+               })
+               .ToArray();
         }
     }
 }

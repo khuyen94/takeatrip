@@ -3,3 +3,16 @@
 ################################################################################
 
 /.vs
+/TakeATrip/Repository.Pattern.EfCore/bin/Debug/netcoreapp2.1/Repository.Pattern.EfCore.deps.json
+/TakeATrip/Repository.Pattern.EfCore/obj/Debug/netcoreapp2.1/Repository.Pattern.EfCore.AssemblyInfo.cs
+/TakeATrip/Repository.Pattern.EfCore/obj/Debug/netcoreapp2.1/Repository.Pattern.EfCore.csproj.CopyComplete
+/TakeATrip/Repositoy.Pattern/bin/Debug/netcoreapp2.1/Repositoy.Pattern.deps.json
+/TakeATrip/Repositoy.Pattern/obj/Debug/netcoreapp2.1/Repositoy.Pattern.AssemblyInfo.cs
+/TakeATrip/Service.Pattern/bin/Debug/netcoreapp2.1/Service.Pattern.deps.json
+/TakeATrip/Service.Pattern/obj/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Entities
+/TakeATrip/TakeATrip.Repositories
+/TakeATrip/TakeATrip.Services/bin/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Services/obj/Debug/netcoreapp2.1/TakeATrip.Services.AssemblyInfo.cs
+/TakeATrip/TakeATrip.Services/obj/Release/netcoreapp2.1/TakeATrip.Services.AssemblyInfo.cs
+/TakeATrip/TakeATrip.Web/bin/Debug/netcoreapp2.1
