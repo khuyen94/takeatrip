@@ -20,3 +20,10 @@
 /TakeATrip/TakeATrip.Web/wwwroot/img
 
 TakeATrip/.dockerignore
+/TakeATrip/TakeATrip.Web/obj
+/TakeATrip/.vs/TakeATrip/v15/Server/sqlite3
+/TakeATrip/Repository.Pattern.EfCore/obj
+/TakeATrip/Repositoy.Pattern/obj
+/TakeATrip/Service.Pattern/obj
+/TakeATrip/TakeATrip.Common/obj
+/TakeATrip/TakeATrip.Services/obj
