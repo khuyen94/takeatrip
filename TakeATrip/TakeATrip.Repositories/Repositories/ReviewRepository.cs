@@ -9,7 +9,7 @@ namespace TakeATrip.Repositories.Repositories
 {
     public static class ReviewRepository
     {
-        public static IQueryable<Reviews> GetBaseQuery(this IRepository<Reviews> repository)
+        public static IQueryable<Review> GetBaseQuery(this IRepository<Review> repository)
         {
             return repository.Queryable()
                 .Where(x => x.Status == 1);

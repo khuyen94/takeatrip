@@ -12,7 +12,7 @@ namespace TakeATrip.Web.MappingProfiles
     {
         public TourMappingProfile()
         {
-            CreateMap<Tours, TourDetailViewModel>();
+            CreateMap<Tour, TourDetailViewModel>();
         }
 
         public override string ProfileName

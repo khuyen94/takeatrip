@@ -1,11 +1,11 @@
 ﻿@model IndexViewModel
 @{
     ViewData["Title"] = "Profile";
-    ViewData.AddActivePage(ManageNavPages.Index);
+    ViewData.AddActivePage(ManageNavPages.Profile);
 }
 
-<h4>@ViewData["Title"]</h4>
-@Html.Partial("_StatusMessage", Model.StatusMessage)
+<h4 class="nomargin_top">Profile</h4>
+@await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
 <div class="row">
     <div class="col-md-6">
         <form method="post">
@@ -14,14 +14,12 @@
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
             </div>
-            <div class="form-group">
+            <div class="form-group adding-icon-after">
                 <label asp-for="Email"></label>
                 @if (Model.IsEmailConfirmed)
                 {
-                    <div class="input-group">
-                        <input asp-for="Email" class="form-control" />
-                        <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
-                    </div>
+                    <input asp-for="Email" class="form-control" />
+                    <i class="icon-ok-circled text-success"></i>
                 }
                 else
                 {
@@ -35,7 +33,7 @@
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default">Save</button>
+            <button type="submit" class="btn_1 full-width">Save</button>
         </form>
     </div>
 </div>

@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hero_in cart_section">
+    <div class="wrapper">
+        <div class="container">
+            @await Html.PartialAsync("_OrderNav")
+        </div>
+    </div>
+</div>
+<!--/hero_in-->
+
+<div class="bg_color_1">
+    <div class="container margin_60_35">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

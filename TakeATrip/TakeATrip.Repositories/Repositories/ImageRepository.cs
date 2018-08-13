@@ -9,7 +9,7 @@ namespace TakeATrip.Repositories.Repositories
 {
     public static class ImageRepository
     {
-        public static IQueryable<Images> GetBaseQuery(this IRepository<Images> repository)
+        public static IQueryable<Image> GetBaseQuery(this IRepository<Image> repository)
         {
             return repository.Queryable()
                 .Where(x => x.Status == 1);

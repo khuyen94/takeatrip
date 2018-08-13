@@ -19,7 +19,6 @@ namespace Repository.Pattern.EfCore
         private DbContext _dataContext;
         private bool _disposed;
         private IDbContextTransaction _transaction;
-        private Dictionary<string, dynamic> _repositories;
 
         #endregion Private Fields
 
@@ -28,7 +27,6 @@ namespace Repository.Pattern.EfCore
         public UnitOfWork(DbContext dataContext)
         {
             _dataContext = dataContext;
-            _repositories = new Dictionary<string, dynamic>();
         }
 
         public void Dispose()
@@ -67,11 +65,6 @@ namespace Repository.Pattern.EfCore
             return _dataContext.SaveChanges();
         }
 
-        public IRepository<TEntity> Repository<TEntity>() where TEntity : class
-        {
-            return RepositoryAsync<TEntity>();
-        }
-
         public Task<int> SaveChangesAsync()
         {
             return _dataContext.SaveChangesAsync();
@@ -82,37 +75,16 @@ namespace Repository.Pattern.EfCore
             return _dataContext.SaveChangesAsync(cancellationToken);
         }
 
-        public IRepositoryAsync<TEntity> RepositoryAsync<TEntity>() where TEntity : class
-        {
-            if (_repositories == null)
-            {
-                _repositories = new Dictionary<string, dynamic>();
-            }
-
-            var type = typeof(TEntity).Name;
-
-            if (_repositories.ContainsKey(type))
-            {
-                return (IRepositoryAsync<TEntity>)_repositories[type];
-            }
-
-            var repositoryType = typeof(Repository<>);
-
-            _repositories.Add(type, Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _dataContext, this));
-
-            return _repositories[type];
-        }
-
         #region Unit of Work Transactions
 
-        public void BeginTransaction()
+        public void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
         {            
             if (_dataContext.Database.GetDbConnection().State != ConnectionState.Open)
             {
                 _dataContext.Database.OpenConnection();
             }
 
-            _transaction = _dataContext.Database.BeginTransaction();
+            _transaction = _dataContext.Database.BeginTransaction(isolationLevel);
         }
 
         public bool Commit()

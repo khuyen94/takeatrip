@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TakeATrip/obj
+/TakeATrip/Repositoy.Pattern/obj/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Common/bin/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Common/obj
+/TakeATrip/TakeATrip.Entities/obj/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Repositories/bin/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Repositories/obj/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Services/bin/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Services/obj/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Web/bin/Debug/netcoreapp2.1
+/TakeATrip/TakeATrip.Web/Logs
+/TakeATrip/TakeATrip.Web/obj
+/TakeATrip/.vs

@@ -36,7 +36,7 @@
 		navbar: {
 			title: 'MENU'
 		},
-		navbars: [{position:'bottom',content: ['<a href="#0">© 2018 Panagea</a>']}]}, 
+        navbars: [{ position: 'bottom', content: ['<a href="/Home/Index">© 2018 TakeATrip</a>']}]}, 
 		{
 		// configuration
 		clone: true,

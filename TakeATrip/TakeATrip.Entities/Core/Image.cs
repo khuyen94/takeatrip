@@ -3,14 +3,13 @@ using System.Collections.Generic;
 
 namespace TakeATrip.Entities.Core
 {
-    public partial class Reviews
+    public partial class Image
     {
         public int Id { get; set; }
         public int TourId { get; set; }
-        public string Username { get; set; }
-        public string Comment { get; set; }
-        public byte Rate { get; set; }
+        public string Link { get; set; }
         public int Status { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

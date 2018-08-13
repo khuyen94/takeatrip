@@ -11,16 +11,16 @@ using TakeATrip.Services.Models.ReviewModels;
 
 namespace TakeATrip.Services.Core
 {
-    public interface IReviewService : IService<Reviews>
+    public interface IReviewService : IService<Review>
     {
         ReviewModel GetReview(string id);
     }
-    public class ReviewService : Service<Reviews>, IReviewService
+    public class ReviewService : Service<Review>, IReviewService
     {
-        private readonly IRepositoryAsync<Reviews> _repository;
+        private readonly IRepositoryAsync<Review> _repository;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
-        public ReviewService(IRepositoryAsync<Reviews> repository, IUnitOfWorkAsync unitOfWorkAsync) : base(repository)
+        public ReviewService(IRepositoryAsync<Review> repository, IUnitOfWorkAsync unitOfWorkAsync) : base(repository)
         {
             _repository = repository;
             _unitOfWorkAsync = unitOfWorkAsync;
@@ -76,10 +76,10 @@ namespace TakeATrip.Services.Core
                 Percent = (m.TotalRate / (float)total) * 100
             }).ToArray();
         }
-        private Review[] GetListReview(int id)
+        private UserReview[] GetListReview(int id)
         {
             return _repository.GetBaseQuery()
-                .Where(m => m.TourId == id).Select(m => new Review
+                .Where(m => m.TourId == id).Select(m => new UserReview
                 {
                     UserName = m.Username,
                     Rates = m.Rate,

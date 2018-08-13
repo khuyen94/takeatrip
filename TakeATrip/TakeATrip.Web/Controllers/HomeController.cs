@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Repositoy.Pattern.UnitOfWork;
 using TakeATrip.Entities.Core;
 using TakeATrip.Web.Models;
@@ -14,7 +15,8 @@ namespace TakeATrip.Web.Controllers
     {
         private IUnitOfWorkAsync unitOfWorkAsync;
 
-        public HomeController(IUnitOfWorkAsync unitOfWorkAsync)
+        public HomeController(IUnitOfWorkAsync unitOfWorkAsync,
+            ILogger<HomeController> logger)
         {
             this.unitOfWorkAsync = unitOfWorkAsync;
         }

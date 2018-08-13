@@ -10,8 +10,7 @@ namespace Repositoy.Pattern.UnitOfWork
     {
         int SaveChanges();
         void Dispose(bool disposing);
-        IRepository<TEntity> Repository<TEntity>() where TEntity : class;
-        void BeginTransaction();
+        void BeginTransaction(IsolationLevel isolationLevel);
         bool Commit();
         void Rollback();
     }

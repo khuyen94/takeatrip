@@ -8,25 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TakeATrip.Web.Models;
-using TakeATrip.Web.Services;
 using Repositoy.Pattern.UnitOfWork;
 using Repository.Pattern.EfCore;
 using TakeATrip.Entities.Core;
 using TakeATrip.Entities.IdentityDB;
 using TakeATrip.Services.Common;
-using TakeATrip.Services.Models;
 using Microsoft.AspNetCore.Http;
 using TakeATrip.Services.Core;
 using AutoMapper;
-using Autofac;
 using Service.Pattern;
 using Repositoy.Pattern.Repositories;
-using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace TakeATrip.Web
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -36,7 +32,7 @@ namespace TakeATrip.Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             //Add db context
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -62,47 +58,60 @@ namespace TakeATrip.Web
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
 
-            // Add application services.          
-            services.AddScoped<DbContext, TakeatripContext>();
-            services.AddScoped<IUnitOfWorkAsync, UnitOfWork>();
+            AddDataServices(services);
 
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
+            AddCommonServices(services);
 
-            services.AddSingleton<ITourService, TourService>();
-            services.AddSingleton<IReviewService, ReviewService>();
+            services.AddSingleton(Configuration);
 
-            services.AddSingleton<IConfiguration>(Configuration);
             services.AddAutoMapper();
 
-            services.AddMvc();
+            services.AddLogging();
 
-            var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepositoryAsync<>));
-            containerBuilder.RegisterGeneric(typeof(Service<>));
-            containerBuilder.Populate(services);
-            var container = containerBuilder.Build();
-            return new AutofacServiceProvider(container);
+            services.AddMvc();
+        }
+
+        private void AddDataServices(IServiceCollection services)
+        {
+            // Add dbcontext services.          
+            services.AddTransient<DbContext, TakeatripContext>();
+            services.AddScoped<IUnitOfWorkAsync, UnitOfWork>();
+
+            //add repositories 
+            services.AddTransient(typeof(IRepositoryAsync<>), typeof(Repository<>));
+
+            //add services 
+            services.AddTransient(typeof(IService<>), typeof(Service<>));
+            services.AddTransient<ITourService, TourService>();
+            services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<ICartService, CartService>();
+        }
+
+        private void AddCommonServices(IServiceCollection services)
+        {
+            services.AddTransient<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider service)
         {
+            loggerFactory.AddFile("Logs/takeatrip-{Date}.txt");
+
             app.UseStatusCodePages();
 
             app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
 
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseExceptionHandler("/Home/Error/{0}");
-            //    //app.UseBrowserLink();
-            //    //app.UseDeveloperExceptionPage();
-            //    //app.UseDatabaseErrorPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Error/{0}");
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Home/Error/{0}");
+                app.UseBrowserLink();
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error/{0}");
+            }
 
             app.UseStaticFiles();
 
@@ -114,6 +123,9 @@ namespace TakeATrip.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //init roles and supper admin
+            CreateUserRoles(service).Wait();
         }
     }
 }

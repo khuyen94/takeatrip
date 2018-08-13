@@ -1,0 +1,26 @@
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+WORKDIR /app
+EXPOSE 60439
+EXPOSE 44370
+
+FROM microsoft/dotnet:2.1-sdk AS build
+WORKDIR /src
+COPY TakeATrip.Web/TakeATrip.Web.csproj TakeATrip.Web/
+COPY Repository.Pattern.EfCore/Repository.Pattern.EfCore.csproj Repository.Pattern.EfCore/
+COPY Repositoy.Pattern/Repositoy.Pattern.csproj Repositoy.Pattern/
+COPY TakeATrip.Services/TakeATrip.Services.csproj TakeATrip.Services/
+COPY Service.Pattern/Service.Pattern.csproj Service.Pattern/
+COPY TakeATrip.Repositories/TakeATrip.Repositories.csproj TakeATrip.Repositories/
+COPY TakeATrip.Entities/TakeATrip.Entities.csproj TakeATrip.Entities/
+RUN dotnet restore TakeATrip.Web/TakeATrip.Web.csproj
+COPY . .
+WORKDIR /src/TakeATrip.Web
+RUN dotnet build TakeATrip.Web.csproj -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish TakeATrip.Web.csproj -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "TakeATrip.Web.dll"]
