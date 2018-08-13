@@ -2,16 +2,24 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/TakeATrip/obj
-/TakeATrip/Repositoy.Pattern/obj/Debug/netcoreapp2.1
-/TakeATrip/TakeATrip.Common/bin/Debug/netcoreapp2.1
-/TakeATrip/TakeATrip.Common/obj
-/TakeATrip/TakeATrip.Entities/obj/Debug/netcoreapp2.1
-/TakeATrip/TakeATrip.Repositories/bin/Debug/netcoreapp2.1
-/TakeATrip/TakeATrip.Repositories/obj/Debug/netcoreapp2.1
-/TakeATrip/TakeATrip.Services/bin/Debug/netcoreapp2.1
-/TakeATrip/TakeATrip.Services/obj/Debug/netcoreapp2.1
-/TakeATrip/TakeATrip.Web/bin/Debug/netcoreapp2.1
-/TakeATrip/TakeATrip.Web/Logs
-/TakeATrip/TakeATrip.Web/obj
 /TakeATrip/.vs
+/TakeATrip/bin
+/TakeATrip/obj
+/TakeATrip/Repositoy.Pattern.EfCore/bin
+/TakeATrip/Repositoy.Pattern.EfCore/obj
+/TakeATrip/Repositoy.Pattern/bin
+/TakeATrip/Repositoy.Pattern/obj
+/TakeATrip/Service.Pattern/bin
+/TakeATrip/Service.Pattern/obj
+/TakeATrip/TakeATrip.Common/bin
+/TakeATrip/TakeATrip.Common/obj
+/TakeATrip/TakeATrip.Entities/bin
+/TakeATrip/TakeATrip.Entities/obj
+/TakeATrip/TakeATrip.Repositories/bin
+/TakeATrip/TakeATrip.Repositories/obj
+/TakeATrip/TakeATrip.Services/bin
+/TakeATrip/TakeATrip.Services/obj
+/TakeATrip/TakeATrip.Web/bin
+/TakeATrip/TakeATrip.Web/obj
+/TakeATrip/TakeATrip.Web/Logs
+
