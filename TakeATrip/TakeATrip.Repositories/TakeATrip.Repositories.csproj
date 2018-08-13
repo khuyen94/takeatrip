@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Repository.Pattern.EfCore\Repository.Pattern.EfCore.csproj" />
     <ProjectReference Include="..\Repositoy.Pattern\Repositoy.Pattern.csproj" />
     <ProjectReference Include="..\TakeATrip.Entities\TakeATrip.Entities.csproj" />
   </ItemGroup>

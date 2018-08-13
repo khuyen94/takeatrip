@@ -7,7 +7,7 @@
 		//set up map options
 		$(".map_contact").mapmarker({
 			zoom	: 14,
-			center	: 'My position',
+            center: 'New World Saigon Hotel',
 			markers	: myMarkers
 		});
 

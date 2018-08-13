@@ -15,10 +15,13 @@ namespace TakeATrip.Entities.Core
         {
         }
 
-        public virtual DbSet<Images> Images { get; set; }
-        public virtual DbSet<Reviews> Reviews { get; set; }
-        public virtual DbSet<Tours> Tours { get; set; }
-        public virtual DbSet<TourTypes> TourTypes { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Tour> Tours { get; set; }
+        public virtual DbSet<TourType> TourTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,7 +32,20 @@ namespace TakeATrip.Entities.Core
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Images>(entity =>
+            modelBuilder.Entity<Cart>(entity =>
+            {
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.OrderId).HasMaxLength(450);
+
+                entity.Property(e => e.TourId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+            });
+
+            modelBuilder.Entity<Image>(entity =>
             {
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
@@ -42,7 +58,35 @@ namespace TakeATrip.Entities.Core
                     .HasMaxLength(500);
             });
 
-            modelBuilder.Entity<Reviews>(entity =>
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("OrderID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Coupon).HasMaxLength(50);
+
+                entity.Property(e => e.OrderDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Status)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+            });
+
+            modelBuilder.Entity<OrderDetail>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.OrderId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+            });
+
+            modelBuilder.Entity<Review>(entity =>
             {
                 entity.Property(e => e.Comment).IsRequired();
 
@@ -53,7 +97,7 @@ namespace TakeATrip.Entities.Core
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Tours>(entity =>
+            modelBuilder.Entity<Tour>(entity =>
             {
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
@@ -62,6 +106,10 @@ namespace TakeATrip.Entities.Core
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Description).IsRequired();
+
+                entity.Property(e => e.DurationUnit)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Location)
                     .IsRequired()
@@ -80,7 +128,7 @@ namespace TakeATrip.Entities.Core
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
             });
 
-            modelBuilder.Entity<TourTypes>(entity =>
+            modelBuilder.Entity<TourType>(entity =>
             {
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()

@@ -8,7 +8,7 @@ namespace TakeATrip.Repositories.Repositories
 {
     public static class TourRepository
     {
-        public static IQueryable<Tours> GetBaseQuery(this IRepository<Tours> repository)
+        public static IQueryable<Tour> GetBaseQuery(this IRepository<Tour> repository)
         {
             return repository.Queryable()
                 .Where(x => x.Status == 1);

@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeATrip.Entities", "TakeA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeATrip.Web", "TakeATrip.Web\TakeATrip.Web.csproj", "{DEA8CE9B-34FD-46E4-9C18-402E53310CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeATrip.Services", "TakeATrip.Services\TakeATrip.Services.csproj", "{4C545AEE-58F0-4A0B-BC89-50EF3CD3D1B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeATrip.Services", "TakeATrip.Services\TakeATrip.Services.csproj", "{4C545AEE-58F0-4A0B-BC89-50EF3CD3D1B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeATrip.Repositories", "TakeATrip.Repositories\TakeATrip.Repositories.csproj", "{1C345D8E-3886-47F9-B4D3-13DB8ABE04E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeATrip.Repositories", "TakeATrip.Repositories\TakeATrip.Repositories.csproj", "{1C345D8E-3886-47F9-B4D3-13DB8ABE04E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeATrip.Common", "TakeATrip.Common\TakeATrip.Common.csproj", "{320BD8EA-8328-4495-B4D9-96498F42B391}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{1C345D8E-3886-47F9-B4D3-13DB8ABE04E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C345D8E-3886-47F9-B4D3-13DB8ABE04E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C345D8E-3886-47F9-B4D3-13DB8ABE04E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320BD8EA-8328-4495-B4D9-96498F42B391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320BD8EA-8328-4495-B4D9-96498F42B391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320BD8EA-8328-4495-B4D9-96498F42B391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320BD8EA-8328-4495-B4D9-96498F42B391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

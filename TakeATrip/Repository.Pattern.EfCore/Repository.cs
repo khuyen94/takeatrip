@@ -4,6 +4,7 @@ using Repositoy.Pattern.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,17 +14,13 @@ namespace Repository.Pattern.EfCore
     public class Repository<TEntity> : IRepositoryAsync<TEntity> where TEntity : class
     {
         #region Private Fields
-
-        private readonly DbContext _context;
+        
         private readonly DbSet<TEntity> _dbSet;
-        private readonly IUnitOfWorkAsync _unitOfWork;
 
         #endregion Private Fields
 
-        public Repository(DbContext context, IUnitOfWorkAsync unitOfWork)
+        public Repository(DbContext context)
         {
-            _context = context;
-            _unitOfWork = unitOfWork;
 
             _dbSet = context.Set<TEntity>();
 
@@ -78,11 +75,6 @@ namespace Repository.Pattern.EfCore
             return _dbSet;
         }
 
-        public IRepository<T> GetRepository<T>() where T : class
-        {
-            return _unitOfWork.Repository<T>();
-        }
-
         public virtual async Task<TEntity> FindAsync(params object[] keyValues)
         {
             return await _dbSet.FindAsync(keyValues);
@@ -110,6 +102,11 @@ namespace Repository.Pattern.EfCore
             _dbSet.Remove(entity);
 
             return true;
-        }       
+        }
+
+        public IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _dbSet.Where(predicate);
+        }
     }
 }

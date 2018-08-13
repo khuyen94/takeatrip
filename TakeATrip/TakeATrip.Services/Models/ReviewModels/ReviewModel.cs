@@ -9,9 +9,9 @@ namespace TakeATrip.Services.Models.ReviewModels
         public float RateAvg { get; set; }
         public int TotalReview { get; set; }
         public Rate[] Rate { get; set; }
-        public Review[] Review { get; set; }
+        public UserReview[] Review { get; set; }
     }
-    public class Review
+    public class UserReview
     {
         public string UserName { get; set; }
         public string Avatar { get; set; }

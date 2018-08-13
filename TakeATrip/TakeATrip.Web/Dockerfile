@@ -1,9 +1,9 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime-nanoserver-1709 AS base
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
-EXPOSE 60440
+EXPOSE 60439
 EXPOSE 44370
 
-FROM microsoft/dotnet:2.1-sdk-nanoserver-1709 AS build
+FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
 COPY TakeATrip.Web/TakeATrip.Web.csproj TakeATrip.Web/
 COPY Repository.Pattern.EfCore/Repository.Pattern.EfCore.csproj Repository.Pattern.EfCore/

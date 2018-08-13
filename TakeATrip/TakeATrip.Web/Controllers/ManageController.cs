@@ -49,7 +49,7 @@ namespace TakeATrip.Web.Controllers
         public string StatusMessage { get; set; }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Profile()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -71,7 +71,7 @@ namespace TakeATrip.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(IndexViewModel model)
+        public async Task<IActionResult> Profile(IndexViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace TakeATrip.Web.Controllers
             }
 
             StatusMessage = "Your profile has been updated";
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Profile));
         }
 
         [HttpPost]
@@ -129,7 +129,7 @@ namespace TakeATrip.Web.Controllers
             await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
             StatusMessage = "Verification email sent. Please check your email.";
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Profile));
         }
 
         [HttpGet]

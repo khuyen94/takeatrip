@@ -1,17 +1,26 @@
-﻿@{ 
+﻿@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Manage your account</h2>
-
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            @await Html.PartialAsync("_ManageNav")
+<section class="hero_in general">
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="fadeInUp"><span></span>Manage your account</h1>
         </div>
-        <div class="col-md-9">
+    </div>
+</section>
+
+<div class="container margin_60_35">
+    <div class="row">
+        <aside class="col-lg-3">
+            <div class="box_style_cat">
+                @await Html.PartialAsync("_ManageNav")
+            </div>
+            <!--/sticky -->
+        </aside>
+        <!--/aside -->
+
+        <div class="col-lg-9">
             @RenderBody()
         </div>
     </div>
@@ -20,4 +29,4 @@
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
-        
+

@@ -9,6 +9,7 @@ namespace Repositoy.Pattern.Repositories
     public interface IRepository<TEntity> where TEntity : class
     {
         TEntity Find(params object[] keyValues);
+        IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);
         void Insert(TEntity entity);
         void InsertRange(IEnumerable<TEntity> entities);
         void InsertGraphRange(IEnumerable<TEntity> entities);
@@ -16,6 +17,6 @@ namespace Repositoy.Pattern.Repositories
         void Delete(object id);
         void Delete(TEntity entity);
         IQueryable<TEntity> Queryable();
-        IRepository<T> GetRepository<T>() where T : class;
+        IQueryable<TEntity> RawQuery(string query, params object[] parameters);
     }
 }

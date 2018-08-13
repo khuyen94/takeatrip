@@ -398,25 +398,27 @@
 <!--/call_section-->
 
 @section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
     <!-- DATEPICKER  -->
     <script src="~/js/moment.min.js"></script>
     <script src="~/js/daterangepicker.js"></script>
     <script>
-            $(function () {
-                'use strict';
-                $('input[name="dates"]').daterangepicker({
-                    autoUpdateInput: false,
-                    locale: {
-                        cancelLabel: 'Clear'
-                    }
-                });
-                $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
-                    $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
-                });
-                $('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
-                    $(this).val('');
-                });
+        $(function () {
+            'use strict';
+            $('input[name="dates"]').daterangepicker({
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: 'Clear'
+                }
             });
+            $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
+            });
+            $('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        });
     </script>
 
     <!-- INPUT QUANTITY  -->

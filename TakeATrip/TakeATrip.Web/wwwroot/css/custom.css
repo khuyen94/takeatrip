@@ -1,10 +1,74 @@
 /*============================================================================================*/
 /* Your custom styles below */
 /*============================================================================================*/
-.shortcontent {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    /*text-overflow: ellipsis;*/
-    /*max-width: 500px;*/
+
+/*menu to left*/
+@media only screen and (min-width: 992px) {
+
+    /* Menu */
+    /*.main-menu {
+        left: 15px;
+        float: left;
+    }*/
 }
+
+/*Change header color to white*/
+header.header {
+    background-color: #fff;
+    padding: 15px 20px;
+}
+
+@media only screen and (min-width: 992px) {
+    .main-menu > ul > li span > a {
+        color: #444;
+    }
+}
+
+ul#top_menu li a.wishlist_bt_top {
+    background: url(../img/icon_heart.svg) 0 -21px no-repeat;
+}
+
+ul#top_menu li a.login {
+    background: url(../img/icon_login.svg) 0 -23px no-repeat;
+}
+
+ul#top_menu li a.cart-menu-btn {
+    background: url(../img/icon_cart.svg) 0 -23px no-repeat;
+}
+/*Change header color to white*/
+
+/*icon inside input*/
+.adding-icon-before input {
+    padding-left: 40px;
+}
+
+.adding-icon-before i {
+    font-size: 21px;
+    font-size: 1.3125rem;
+    position: absolute;
+    left: 12px;
+    top: 34px;
+    color: #ccc;
+    width: 25px;
+    height: 25px;
+    display: block;
+    font-weight: 400 !important;
+}
+
+.adding-icon-after input {
+    padding-right: 40px;
+}
+
+.adding-icon-after i {
+    font-size: 21px;
+    font-size: 1.3125rem;
+    position: absolute;
+    right: 12px;
+    top: 34px;
+    color: #ccc;
+    width: 25px;
+    height: 25px;
+    display: block;
+    font-weight: 400 !important;
+}
+/*icon inside input*/

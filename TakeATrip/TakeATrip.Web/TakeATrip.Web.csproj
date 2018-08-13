@@ -3,31 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-TakeATrip.Web-070B53EB-9EB2-4FC6-AA25-D66677052234</UserSecretsId>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="wwwroot\img\tours\upload\**" />
-    <Compile Remove="wwwroot\img\uploads\**" />
-    <Content Remove="wwwroot\img\tours\upload\**" />
-    <Content Remove="wwwroot\img\uploads\**" />
-    <EmbeddedResource Remove="wwwroot\img\tours\upload\**" />
-    <EmbeddedResource Remove="wwwroot\img\uploads\**" />
-    <None Remove="wwwroot\img\tours\upload\**" />
-    <None Remove="wwwroot\img\uploads\**" />
-  </ItemGroup>
-
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="4.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.2" />
-    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.1" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
   </ItemGroup>
 
@@ -464,14 +451,19 @@
   <ItemGroup>
     <ProjectReference Include="..\Repository.Pattern.EfCore\Repository.Pattern.EfCore.csproj" />
     <ProjectReference Include="..\Repositoy.Pattern\Repositoy.Pattern.csproj" />
+    <ProjectReference Include="..\TakeATrip.Common\TakeATrip.Common.csproj" />
     <ProjectReference Include="..\TakeATrip.Entities\TakeATrip.Entities.csproj" />
     <ProjectReference Include="..\TakeATrip.Services\TakeATrip.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="CKFinder">
-      <HintPath>wwwroot\js\ckeditor\plugins\ckfinder\bin\Debug\CKFinder.dll</HintPath>
-    </Reference>
+    <Content Update="Views\Order\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\OrderViewModels\" />
   </ItemGroup>
 
 </Project>
