@@ -13,18 +13,18 @@ using TakeATrip.Services.Models.ImageModels;
 
 namespace TakeATrip.Services.Core
 {
-    public interface IImagesServices : IService<Images>
+    public interface IImagesServices : IService<Image>
     {
         Task<int> UploadImage(int tourId, IFormFile thumbNail, string createdBy);
     }
 
-    public class ImagesService : Service<Images>, IImagesServices
+    public class ImagesService : Service<Image>, IImagesServices
     {
-        private readonly IRepositoryAsync<Images> _repository;
+        private readonly IRepositoryAsync<Image> _repository;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
 
-        public ImagesService(IRepositoryAsync<Images> repository, IUnitOfWorkAsync unitOfWorkAsync) : base(repository)
+        public ImagesService(IRepositoryAsync<Image> repository, IUnitOfWorkAsync unitOfWorkAsync) : base(repository)
         {
             _repository = repository;
             _unitOfWorkAsync = unitOfWorkAsync;
@@ -53,10 +53,10 @@ namespace TakeATrip.Services.Core
                         await thumbNail.CopyToAsync(stream);
                     }
 
-                    var image = _repository.GetRepository<Images>().Queryable().Where(m => m.TourId == tourId).FirstOrDefault();
+                    var image = _repository.GetRepository<Image>().Queryable().Where(m => m.TourId == tourId).FirstOrDefault();
                     if (image == null)
                     {
-                        image = new Images
+                        image = new Image
                         {
                             TourId = tourId,
                             Link = thumbNail.FileName,
@@ -64,14 +64,14 @@ namespace TakeATrip.Services.Core
                             CreatedBy = createdBy,
                             CreatedDate = DateTime.Now
                         };
-                        _repository.GetRepository<Images>().Insert(image);
+                        _repository.GetRepository<Image>().Insert(image);
                     }
                     else
                     {
                         image.Link = thumbNail.FileName;
                         image.CreatedBy = createdBy;
                         image.CreatedDate = DateTime.Now;
-                        _repository.GetRepository<Images>().Update(image);
+                        _repository.GetRepository<Image>().Update(image);
                     }
 
                     _unitOfWorkAsync.SaveChanges();
@@ -80,7 +80,7 @@ namespace TakeATrip.Services.Core
                 return -1;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
                 var directory = new DirectoryInfo(path);
 

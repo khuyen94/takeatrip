@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using TakeATrip.Entities.IdentityDB;
 using TakeATrip.Services.Core;
 using TakeATrip.Web.ViewModels.AdvertisingViewModels;
-
 namespace TakeATrip.Web.Controllers
 {
     public class AdvertisingController : Controller
@@ -17,10 +16,9 @@ namespace TakeATrip.Web.Controllers
         private ITourService _tourService;
         private readonly UserManager<ApplicationUser> _userManager;
         private IMapper _mapper;
-
         public AdvertisingController(ITourService tourService,
-                             IMapper mapper,
-                             UserManager<ApplicationUser> userManager)
+                            IMapper mapper,
+                            UserManager<ApplicationUser> userManager)
         {
             _tourService = tourService;
             _mapper = mapper;
@@ -30,21 +28,17 @@ namespace TakeATrip.Web.Controllers
         {
             return View();
         }
-
         [HttpGet]
         public async Task<IActionResult> Register()
         {
             var user = await _userManager.GetUserAsync(User);
-
             var model = new RegisterAdvertViewModel
             {
                 //Package = null,
                 TourItem = _tourService.GetListTour(user.Email)
             };
-
             return View(model);
         }
-
         [HttpPost]
         public async Task<IActionResult> Register(RegisterAdvertViewModel model)
         {
@@ -54,7 +48,6 @@ namespace TakeATrip.Web.Controllers
             {
                 return View("PaymentTemplate");
             }
-
             ModelState.AddModelError("ModelError", "Please recheck your data");
             return View(model);
         }
