@@ -18,5 +18,6 @@ namespace Repositoy.Pattern.Repositories
         void Delete(TEntity entity);
         IQueryable<TEntity> Queryable();
         IQueryable<TEntity> RawQuery(string query, params object[] parameters);
+        IRepository<T> GetRepository<T>() where T : class;
     }
 }

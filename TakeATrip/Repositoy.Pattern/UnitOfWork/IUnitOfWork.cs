@@ -7,10 +7,12 @@ using System.Text;
 namespace Repositoy.Pattern.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
-    {
+    {        
         int SaveChanges();
-        void Dispose(bool disposing);
-        void BeginTransaction(IsolationLevel isolationLevel);
+        int ExecuteSqlCommand(string sql, params object[] parameters);
+        IRepository<TEntity> Repository<TEntity>() where TEntity : class;
+        int? CommandTimeout { get; set; }
+        void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.Unspecified);
         bool Commit();
         void Rollback();
     }

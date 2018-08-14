@@ -14,16 +14,23 @@ namespace Repository.Pattern.EfCore
     public class Repository<TEntity> : IRepositoryAsync<TEntity> where TEntity : class
     {
         #region Private Fields
-        
+
+        private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
+        private readonly IUnitOfWorkAsync _unitOfWork;
 
         #endregion Private Fields
 
-        public Repository(DbContext context)
+        public Repository(DbContext context,IUnitOfWorkAsync unitOfWork)
         {
+            _context = context;
+            _unitOfWork = unitOfWork;
+            _dbSet = context.Set<TEntity>();            
+        }
 
-            _dbSet = context.Set<TEntity>();
-
+        public IRepository<T> GetRepository<T>() where T : class
+        {
+            return _unitOfWork.Repository<T>();
         }
 
         public virtual TEntity Find(params object[] keyValues)
