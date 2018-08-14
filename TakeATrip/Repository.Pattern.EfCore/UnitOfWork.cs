@@ -19,6 +19,7 @@ namespace Repository.Pattern.EfCore
         private DbContext _dataContext;
         private bool _disposed;
         private IDbContextTransaction _transaction;
+        protected Dictionary<string, dynamic> Repositories;
 
         #endregion Private Fields
 
@@ -75,9 +76,66 @@ namespace Repository.Pattern.EfCore
             return _dataContext.SaveChangesAsync(cancellationToken);
         }
 
+        public int? CommandTimeout
+        {
+            get => _dataContext.Database.GetCommandTimeout();
+            set => _dataContext.Database.SetCommandTimeout(value);
+        }
+
+        public virtual int ExecuteSqlCommand(string sql, params object[] parameters)
+        {
+            return _dataContext.Database.ExecuteSqlCommand(sql, parameters);
+        }
+
+        public virtual async Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters)
+        {
+            return await _dataContext.Database.ExecuteSqlCommandAsync(sql, parameters);
+        }
+
+        public IRepositoryAsync<TEntity> RepositoryAsync<TEntity>() where TEntity : class
+        {
+            if (ServiceLocator.IsLocationProviderSet)
+            {
+                return ServiceLocator.Current.GetInstance<IRepositoryAsync<TEntity>>();
+            }
+
+            if (Repositories == null)
+            {
+                Repositories = new Dictionary<string, dynamic>();
+            }
+
+            var type = typeof(TEntity).Name;
+
+            if (Repositories.ContainsKey(type))
+            {
+                return (IRepositoryAsync<TEntity>)Repositories[type];
+            }
+
+            var repositoryType = typeof(Repository<>);
+
+            Repositories.Add(type, Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _dataContext, this));
+
+            return Repositories[type];
+        }
+
+        public virtual IRepository<TEntity> Repository<TEntity>() where TEntity : class
+        {
+            if (ServiceLocator.IsLocationProviderSet)
+            {
+                return ServiceLocator.Current.GetInstance<IRepository<TEntity>>();
+            }
+
+            return RepositoryAsync<TEntity>();
+        }
+
+        public virtual async Task<int> ExecuteSqlCommandAsync(string sql, CancellationToken cancellationToken, params object[] parameters)
+        {
+            return await _dataContext.Database.ExecuteSqlCommandAsync(sql, cancellationToken, parameters);
+        }
+
         #region Unit of Work Transactions
 
-        public void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
+        public void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.Unspecified)
         {            
             if (_dataContext.Database.GetDbConnection().State != ConnectionState.Open)
             {
@@ -96,7 +154,7 @@ namespace Repository.Pattern.EfCore
         public void Rollback()
         {
             _transaction.Rollback();
-        }
+        }       
 
         #endregion
     }
